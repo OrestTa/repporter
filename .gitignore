@@ -310,3 +310,4 @@ broadcast/
 
 # vscode
 .vscode/
+frontend/.env
