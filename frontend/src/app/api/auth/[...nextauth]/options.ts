@@ -28,12 +28,8 @@ export const options: NextAuthOptions = {
       if (token?.sub) session.user._id = token.sub;
   
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
-      console.log("Session:",session)
-
-
       if (user?._id) token._id = user._id;
       if (user?.isAdmin) token.isAdmin = user.isAdmin;
-      console.log("Token:",token)
 
       return session && token;
   },
