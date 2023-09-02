@@ -8,6 +8,7 @@
 
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from crypto import (
     recover_address,
     verify_oauth2,
@@ -18,6 +19,8 @@ from crypto import (
 )
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://repporter.onrender.com"]}})
 
 
 @app.route("/api/addlink", methods=["POST"])
