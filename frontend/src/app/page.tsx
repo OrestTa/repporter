@@ -8,7 +8,7 @@ import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: session, status } = useSession()
+const { data: session, status } = useSession()
   const {
     data: signMessageData,
     error,
@@ -34,7 +34,7 @@ export default function Home() {
             message: message,
           });
         }}
-      >
+      > 
         <label>Enter a message to sign in the wallet</label>
         <input
           type="text"
@@ -44,7 +44,7 @@ export default function Home() {
         />
         <button onClick={() => signIn("google")}>Sign in with Google</button>
       </form>
-      <button onClick={() => signOut()}>Sign out</button>
+<button onClick={() => signOut()}>Sign out</button>
       {status === "authenticated" && <div>{session.user.email}</div>}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
