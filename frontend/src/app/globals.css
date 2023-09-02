@@ -66,10 +66,10 @@ a {
 .yellow {
   background-color: var(--yellow);
   position: absolute;
-  top: 200px;
+  top: 100px;
   left: 100px;
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 400px;
   
   animation: yellow 8s infinite ease;
 }
@@ -78,9 +78,9 @@ a {
   background-color: var(--green);
   position: absolute;
   top: 80px;
-  right: -20px;
-  height: 200px;
-  width: 250px;
+  right: -100px;
+  height: 400px;
+  width: 500px;
   
   animation: green 8s infinite ease;
 }
@@ -89,9 +89,9 @@ a {
   background-color: var(--red);
   position: absolute;
   right: 0;
-  top: 300px;
-  height: 250px;
-  width: 200px;
+  top: 150px;
+  height: 550px;
+  width: 400px;
   
   animation: red 8s infinite linear;
 }
