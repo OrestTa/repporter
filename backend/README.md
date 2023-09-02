@@ -9,7 +9,7 @@
 
 
 ## Usage
-- install python (and make venv if you want)
+- install python3 (and make venv if you want)
 - `pip install -r requirements.txt`
 - populate .env (see .dummy.env)
 - `python app.py`
