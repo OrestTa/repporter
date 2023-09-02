@@ -31,29 +31,29 @@ export default function Home() {
     const LINK_TYPE = "github";
     const LINK_VALUE = "vbuterin";
 
-  useEffect(()=>{
-    console.log(session)
-  },[session])
-  
-  if (typeof window.ethereum !== 'undefined') {
-    // Create a Web3 instance using the injected provider
-    const web3 = new Web3(window.ethereum);
-  
-    // Request access to the user's wallet
-    window.ethereum
-      .request({ method: 'eth_requestAccounts' })
-      .then((accounts: any[]) => {
-        const userAddress = accounts[0];
-        console.log('User Address:', userAddress);
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
-  } else {
-    console.error('No web3 provider detected. Please install MetaMask or use a compatible browser.');
-  }
-  
-    
+    useEffect(() => {
+      console.log(session);
+    }, [session]);
+
+    if (typeof window.ethereum !== "undefined") {
+      // Create a Web3 instance using the injected provider
+      const web3 = new Web3(window.ethereum);
+
+      // Request access to the user's wallet
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((accounts: any[]) => {
+          const userAddress = accounts[0];
+          console.log("User Address:", userAddress);
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
+    } else {
+      console.error(
+        "No web3 provider detected. Please install MetaMask or use a compatible browser."
+      );
+    }
 
     const addLink = async () => {
       const response = await fetch(`${API_BASE}/api/addlink`, {
@@ -101,14 +101,13 @@ export default function Home() {
 
         <div className="flex justify-end items-center space-x-12">
           <a
-            href="https://github.com/0xkkonrad"
+            href="https://github.com/0xkkonrad/repporter/"
             target="blank"
             className="text-current"
           >
             <p>Repo</p>
           </a>
         </div>
-
       </div>
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
@@ -142,7 +141,6 @@ export default function Home() {
         </button>
 
         <APICallerButton />
-
       </div>
 
       {/* blobs */}
