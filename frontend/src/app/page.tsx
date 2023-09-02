@@ -22,31 +22,29 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
+
   const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
-    const ADDRESS = "0x71C9E62FA7293D43765692A408483B2fC7c7f0C6";
-    const SIGNATURE = "yourSignatureForOAuth2Token";
-    const OAUTH2_TOKEN = "yourOAuth2Token";
-    const LINK_TYPE = "github";
-    const LINK_VALUE = "vbuterin";
+  const { data: session, status } = useSession();
+  const[jit, setJit] = useState(undefined)
+  const[name, setName] = useState(undefined)
 
   useEffect(()=>{
-    console.log(session)
+    setJit(session?.accessToken)
+    setName(session?.name)
   },[session])
-  
+
+  const [userAddress, setUserAddres] = useState(null)
   if(typeof window !== "undefined" && typeof window.ethereum !== 'undefined') {
     // Create a Web3 instance using the injected provider
     const web3 = new Web3(window.ethereum);
-  
     // Request access to the user's wallet
     window.ethereum
       .request({ method: 'eth_requestAccounts' })
       .then((accounts: any[]) => {
         const userAddress = accounts[0];
+        setUserAddres(userAddress)
         console.log('User Address:', userAddress);
       })
       .catch((error: any) => {
@@ -56,7 +54,11 @@ export default function Home() {
     console.error('No web3 provider detected. Please install MetaMask or use a compatible browser.');
   }
   
-    
+  const ADDRESS = userAddress;
+  const SIGNATURE = signMessageData;
+  const OAUTH2_TOKEN = jit;
+  const LINK_TYPE = "github";
+  const LINK_VALUE = name;
 
     const addLink = async () => {
       const response = await fetch(`${API_BASE}/api/addlink`, {
@@ -136,7 +138,7 @@ export default function Home() {
           className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
           onClick={() =>
             signMessage({
-              message: "DAS",
+              message: "",
             })
           }
         >
