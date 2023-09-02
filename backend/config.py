@@ -49,10 +49,10 @@ DEPLOYMENTS = {
     # mantle testnet
     5001: "0x37da01940581F68053eA05bb1B61DE2c48d82128",
     # celo alfajores
-    44748: "0xA7C500c7CA2CE563298B1EF5EA7577434f4fD8dC",
+    44787: "0xA7C500c7CA2CE563298B1EF5EA7577434f4fD8dC",
 }
 
 CHAIN_RPCS = {
     5001: "https://rpc.testnet.mantle.xyz",
-    44748: "https://alfajores-forno.celo-testnet.org",
+    44787: "https://alfajores-forno.celo-testnet.org",
 }
