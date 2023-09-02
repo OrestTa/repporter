@@ -35,7 +35,7 @@ export default function Home() {
     console.log(session)
   },[session])
   
-  if (typeof window.ethereum !== 'undefined') {
+  if(typeof window !== "undefined" && typeof window.ethereum !== 'undefined') {
     // Create a Web3 instance using the injected provider
     const web3 = new Web3(window.ethereum);
   
