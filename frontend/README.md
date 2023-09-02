@@ -19,6 +19,10 @@ npm run dev
 yarn
 # and
 yarn dev
+
+# or EVEN better
+pnpm install
+pnpm dev
 ```
 
 Secondly, copy the .env.example to .env:
