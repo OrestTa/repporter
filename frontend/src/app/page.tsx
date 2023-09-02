@@ -7,8 +7,10 @@ import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
 
+
 export default function Home() {
   const { data: session, status } = useSession();
+  const { open, close } = Web3Button();
   const {
     data: signMessageData,
     error,
@@ -22,17 +24,16 @@ export default function Home() {
   }, [signMessageData]);
 
   return (
+    
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div class="nav">
         <div class="menu">
-
           <a href="/about">
             <p>Why?</p>
           </a>
           <a href="https://github.com/0xkkonrad/repporter/">
             <p>Repo</p>
           </a>
-          
         </div>
       </div>
 
@@ -44,41 +45,48 @@ export default function Home() {
             <a class="button primary" href="/verify" target="_blank">
               Verify
             </a>
-            <Web3Button className="button invert"/>
-            
+            {/* <Web3Button className="button invert"/> */}
+
+            <button className="text-7xl" onClick={() => open()}>Connect</button>
+
+            <Web3Button
+              themeVariables={{
+                "--w3m-font-family": "Roboto, sans-serif",
+                "--w3m-accent-color": "#F5841F",
+              }}
+            />
           </div>
         </div>
 
+        <form
+          className="flex flex-col gap-2"
+          onSubmit={(event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target as HTMLFormElement);
+            const message = formData.get("message") as string;
+            signMessage({
+              message: message,
+            });
+          }}
+        >
+          <label>Enter a message to sign in the wallet</label>
+          <input
+            type="text"
+            id="message"
+            name="message"
+            placeholder="peanut is awesome"
+          />
+          <button onClick={() => signIn("google")}>Sign in with Google</button>
+        </form>
+
         {/* blobs */}
-        <div class="blob-cont">
-          <div class="yellow blob"></div>
-          <div class="red blob"></div>
-          <div class="green blob"></div>
+        <div className="blob-cont">
+          <div className="yellow blob"></div>
+          <div className="red blob"></div>
+          <div className="green blob"></div>
         </div>
-
-
       </div>
 
-      <form
-        className="flex flex-col gap-2"
-        onSubmit={(event) => {
-          event.preventDefault();
-          const formData = new FormData(event.target as HTMLFormElement);
-          const message = formData.get("message") as string;
-          signMessage({
-            message: message,
-          });
-        }}
-      >
-        <label>Enter a message to sign in the wallet</label>
-        <input
-          type="text"
-          id="message"
-          name="message"
-          placeholder="peanut is awesome"
-        />
-        <button onClick={() => signIn("google")}>Sign in with Google</button>
-      </form>
       <button onClick={() => signOut()}>Sign out</button>
       {status === "authenticated" && <div>{session.user.email}</div>}
       {signMessageData && (
