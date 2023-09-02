@@ -5,8 +5,10 @@ import { data } from "autoprefixer";
 import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session, status } = useSession()
   const {
     data: signMessageData,
     error,
@@ -40,14 +42,15 @@ export default function Home() {
           name="message"
           placeholder="peanut is awesome"
         />
-        <button>Sign</button>
+        <button onClick={() => signIn("google")}>Sign in with Google</button>
       </form>
-
+      <button onClick={() => signOut()}>Sign out</button>
+      {status === "authenticated" && <div>{session.user.email}</div>}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
           <label>{signMessageData}</label>
         </div>
       )}
     </main>
-  );
+  )
 }
