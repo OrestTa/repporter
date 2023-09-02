@@ -23,3 +23,8 @@ Team:
 # License
 
 Unlicense
+
+# Smart Contract
+
+See [/contract](/contract)
+    
