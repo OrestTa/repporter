@@ -6,9 +6,13 @@ import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
+<<<<<<< HEAD
 
 import APICallerButton from "./APICallerButton";
 
+=======
+import Web3 from "web3";
+>>>>>>> 181a6c08e0227f5bc015c2be3358e1f6773872f5
 export default function Home() {
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
@@ -24,6 +28,7 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
+<<<<<<< HEAD
   const API_BASE = "https://repporter.onrender.com";
 
   const APICallerButton = () => {
@@ -32,6 +37,32 @@ export default function Home() {
     const OAUTH2_TOKEN = "yourOAuth2Token";
     const LINK_TYPE = "github";
     const LINK_VALUE = "vbuterin";
+=======
+
+  useEffect(()=>{
+    console.log(session)
+  },[session])
+  
+  if (typeof window.ethereum !== 'undefined') {
+    // Create a Web3 instance using the injected provider
+    const web3 = new Web3(window.ethereum);
+  
+    // Request access to the user's wallet
+    window.ethereum
+      .request({ method: 'eth_requestAccounts' })
+      .then((accounts: any[]) => {
+        const userAddress = accounts[0];
+        console.log('User Address:', userAddress);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  } else {
+    console.error('No web3 provider detected. Please install MetaMask or use a compatible browser.');
+  }
+  
+  return (
+>>>>>>> 181a6c08e0227f5bc015c2be3358e1f6773872f5
     
 
     const addLink = async () => {
