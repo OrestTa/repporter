@@ -3,8 +3,6 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import "hardhat/console.sol";
-
 /** 
  * @title Repporter
  * @dev Implements the repporter
@@ -26,13 +24,12 @@ contract Repporter {
         _;        
     }
 
-    mapping (address user => bool web2) public links;
+    mapping (address => mapping (string => string)) private useraddressesAddresslinks;
 
     /** 
      * @dev Create a Repporter
      */
     constructor() {
-        console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender;
         emit OwnerSet(address(0), owner);
     }
@@ -44,5 +41,13 @@ contract Repporter {
     function changeOwner(address newOwner) public isOwner {
         emit OwnerSet(owner, newOwner);
         owner = newOwner;
+    }
+
+    function addLinkForUser(address useraddress, string calldata linkType, string calldata linkValue) public isOwner {
+        useraddressesAddresslinks[useraddress][linkType] = linkValue;
+    }
+
+    function getLinkForUser(address useraddress, string calldata linkType) external view returns (string memory) {
+        return useraddressesAddresslinks[useraddress][linkType];
     }
 }
