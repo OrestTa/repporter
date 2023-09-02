@@ -23,6 +23,7 @@ export default function Home() {
   }, [signMessageData]);
 
   return (
+    
     <main className="p-12">
       <div className="flex justify-between items-center w-full p-4">
         <h1 className="text-3xl">Repporter</h1>
@@ -61,7 +62,7 @@ export default function Home() {
         <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={()=> signMessage({
                 message: "DAS"
               })}>
-            <button>Sign</button>
+            Sign
         </button>
       </div>
 
