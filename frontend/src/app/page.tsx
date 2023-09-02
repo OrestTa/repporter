@@ -48,11 +48,15 @@ export default function Home() {
             
           </div>
         </div>
+
+        {/* blobs */}
         <div class="blob-cont">
           <div class="yellow blob"></div>
           <div class="red blob"></div>
           <div class="green blob"></div>
         </div>
+
+
       </div>
 
       <form
