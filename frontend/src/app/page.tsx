@@ -38,13 +38,15 @@ export default function Home() {
             <p>Contact us</p>
           </a>
         </div>
-      </div>
+
+        
+      </div> 
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
         <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
           Github
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
           +
         </button>
         <button
@@ -53,7 +55,7 @@ export default function Home() {
         >
           Connect Wallet
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
           =
         </button>
         <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
@@ -72,8 +74,6 @@ export default function Home() {
           </form>
         </button>
       </div>
-
-
 
       {/* blobs */}
       <div className="blob-cont">
