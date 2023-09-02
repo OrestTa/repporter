@@ -70,7 +70,7 @@ export default function Home() {
               });
             }}
           >
-            <button onClick={() => signIn("google")}>Sign</button>
+            <button>Sign</button>
           </form>
         </button>
       </div>
