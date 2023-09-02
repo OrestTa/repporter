@@ -22,6 +22,9 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
   const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
@@ -152,7 +155,7 @@ export default function Home() {
       {status === "authenticated" && (
         <button onClick={() => signOut()}>Sign out</button>
       )}
-      {status === "authenticated" && <div>{session.user.email}</div>}
+      {status === "authenticated" && <div>{session.email as string}</div>}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
           <label>{signMessageData}</label>
