@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
-
+import Web3 from "web3";
 export default function Home() {
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
@@ -22,6 +22,29 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
+
+  useEffect(()=>{
+    console.log(session)
+  },[session])
+  
+  if (typeof window.ethereum !== 'undefined') {
+    // Create a Web3 instance using the injected provider
+    const web3 = new Web3(window.ethereum);
+  
+    // Request access to the user's wallet
+    window.ethereum
+      .request({ method: 'eth_requestAccounts' })
+      .then((accounts: any[]) => {
+        const userAddress = accounts[0];
+        console.log('User Address:', userAddress);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  } else {
+    console.error('No web3 provider detected. Please install MetaMask or use a compatible browser.');
+  }
+  
   return (
     
     <main className="p-12">
