@@ -98,7 +98,7 @@ export default function Home() {
     <main className="p-12">
       <div className="flex justify-between items-center w-full p-4">
         <div className="wrapper">
-          <div className="typing-demo text-3xl">Repporter v0.1</div>
+          <div className="typing-demo text-3xl">Repporter</div>
         </div>
 
         <div className="flex justify-end items-center space-x-12">
@@ -161,6 +161,7 @@ export default function Home() {
           <label>{signMessageData}</label>
         </div>
       )}
+      v0.1
     </main>
   );
 }
