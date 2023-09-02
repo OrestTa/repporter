@@ -10,20 +10,24 @@ As an end-user, you can provide a simple receipt that proves that you control a 
 
 # Demo
 
+- https://repporter.netlify.app/
+
 # Links
-https://ethwarsaw-2023.devpost.com/
+- https://ethwarsaw-2023.devpost.com/
 
 # Submission Details
 
 Team: 
-[Devpost: konradeurban](https://devpost.com/konradeurban), kkonrad.eth
-[Devpost: OrestTa](https://devpost.com/OrestTa) orestta.eth
-[Devpost: igor543](https://devpost.com/igor543) 0xc64E64BFc893d8C5787DDEFD818e2A843690EF3E
+- [Devpost: konradeurban](https://devpost.com/konradeurban), kkonrad.eth
+- [Devpost: OrestTa](https://devpost.com/OrestTa) orestta.eth
+- [Devpost: igor543](https://devpost.com/igor543) 0xc64E64BFc893d8C5787DDEFD818e2A843690EF3E
 
 # License
 
 Unlicense
 
-# Smart Contract
+# More Docs
 
-See [/contract](/contract)
+- [Frontend](/frontend)
+- [Backend](/backend)
+- [Smart Contract](/contract)
