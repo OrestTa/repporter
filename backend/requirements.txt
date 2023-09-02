@@ -1,0 +1,6 @@
+flask
+web3
+eth-account
+black
+unittest
+python-dotenv
