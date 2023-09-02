@@ -1,12 +1,9 @@
 "use client";
-import Image from "next/image";
-import { Web3Button, useWeb3Modal } from "@web3modal/react";
-import { data } from "autoprefixer";
-import { useRef, useEffect, useState } from "react";
-import { recoverMessageAddress } from "viem";
-import { useSignMessage } from "wagmi";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Web3 from "web3";
+import { useWeb3Modal } from "@web3modal/react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { useSignMessage } from "wagmi"
+import Web3 from "web3"
 export default function Home() {
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
@@ -157,7 +154,8 @@ export default function Home() {
       {status === "authenticated" && (
         <button onClick={() => signOut()}>Sign out</button>
       )}
-      {status === "authenticated" && <div>{session.email as string}</div>}
+      {status === "authenticated"}
+      {/* && <div>{session.email as string}</div>} */}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
           <label>{signMessageData}</label>
