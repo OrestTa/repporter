@@ -43,7 +43,7 @@ export default function Home() {
       </div> 
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
-        <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+        <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={() => signIn("github")}>
           Github
         </button>
         <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
@@ -81,8 +81,10 @@ export default function Home() {
         <div className="red blob"></div>
         <div className="green blob"></div>
       </div>
-
+{status === "authenticated" &&
       <button onClick={() => signOut()}>Sign out</button>
+
+}
       {status === "authenticated" && <div>{session.user.email}</div>}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
