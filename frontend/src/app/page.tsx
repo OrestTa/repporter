@@ -22,7 +22,7 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
-  const API_BASE = "https://repporter.onrender.com";
+  const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
     const ADDRESS = "0x71C9E62FA7293D43765692A408483B2fC7c7f0C6";

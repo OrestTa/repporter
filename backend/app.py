@@ -20,7 +20,7 @@ from crypto import (
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://repporter.onrender.com"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://repporter.onrender.com", "https://repporter-uij0.onrender.com/"]}})
 
 
 @app.route("/api/addlink", methods=["POST"])
@@ -80,7 +80,7 @@ def index():
 
     # Set the API endpoint base URL (adjust as needed)
     # API_BASE="http://localhost:5000"
-    API_BASE="https://repporter.onrender.com"
+    API_BASE="https://repporter-uij0.onrender.com/"
     
 
     echo "===================================="
