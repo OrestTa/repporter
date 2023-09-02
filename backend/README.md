@@ -15,4 +15,4 @@
 
 
 Testing:
-`python -m unittest test.py`
+once server is running locally, run `source example.sh`
