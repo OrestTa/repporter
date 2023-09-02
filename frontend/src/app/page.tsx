@@ -8,7 +8,7 @@ import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
-const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
   const {
     data: signMessageData,
     error,
@@ -23,9 +23,40 @@ const { data: session, status } = useSession()
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Web3Button />
+      <div class="nav">
+        <div class="menu">
+
+          <a href="/about">
+            <p>Why?</p>
+          </a>
+          <a href="https://github.com/0xkkonrad/repporter/">
+            <p>Repo</p>
+          </a>
+          
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Repporter</h1>
+          <p>Rep your port repo port lorem ipsum.</p>
+          <div class="buttons">
+            <a class="button primary" href="/verify" target="_blank">
+              Verify
+            </a>
+            <Web3Button className="button invert"/>
+            
+          </div>
+        </div>
+        <div class="blob-cont">
+          <div class="yellow blob"></div>
+          <div class="red blob"></div>
+          <div class="green blob"></div>
+        </div>
+      </div>
+
       <form
-        className="flex flex-col gap-2 bg-white p-4 text-black"
+        className="flex flex-col gap-2"
         onSubmit={(event) => {
           event.preventDefault();
           const formData = new FormData(event.target as HTMLFormElement);
@@ -34,7 +65,7 @@ const { data: session, status } = useSession()
             message: message,
           });
         }}
-      > 
+      >
         <label>Enter a message to sign in the wallet</label>
         <input
           type="text"
@@ -44,7 +75,7 @@ const { data: session, status } = useSession()
         />
         <button onClick={() => signIn("google")}>Sign in with Google</button>
       </form>
-<button onClick={() => signOut()}>Sign out</button>
+      <button onClick={() => signOut()}>Sign out</button>
       {status === "authenticated" && <div>{session.user.email}</div>}
       {signMessageData && (
         <div className="bg-white text-black text-xl">
@@ -52,5 +83,5 @@ const { data: session, status } = useSession()
         </div>
       )}
     </main>
-  )
+  );
 }

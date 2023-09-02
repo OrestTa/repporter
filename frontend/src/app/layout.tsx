@@ -34,46 +34,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
+
       <body className={domine.className}>
+        <Providers>
+          <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
+          <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+        </Providers>
+
         
-        <div class="nav">
-          <div class="menu">
-            <a href="/about">
-              <p>Why?</p>
-            </a>
-            <a href="https://github.com/0xkkonrad/repporter/">
-              <p>Repo</p>
-            </a>
-          </div>
-        </div>
 
-        <div class="hero">
-          <div class="hero-text">
-            <h1>Repporter</h1>
-            <p>Rep your port repo port lorem ipsum.</p>
-            <div class="buttons">
-              <a class="button primary" href="/verify" target="_blank">
-                Verify
-              </a>
-              <a class="button secondary" href="/dashboard" target="_blank">
-                Dashboard
-              </a>
-            </div>
 
-            <Providers>
-              <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
-              <Web3Modal
-                projectId={projectId}
-                ethereumClient={ethereumClient}
-              />
-            </Providers>
-          </div>
-          <div class="blob-cont">
-            <div class="yellow blob"></div>
-            <div class="red blob"></div>
-            <div class="green blob"></div>
-          </div>
-        </div>
       </body>
     </html>
   );
