@@ -28,14 +28,8 @@ export default function Home() {
         <h1 className="text-3xl">Repporter</h1>
 
         <div className="flex justify-end items-center space-x-12">
-          <a href="/about-us" className="text-current">
-            <p>About us</p>
-          </a>
-          <a href="/our-mission" className="text-current">
-            <p>Our Mission</p>
-          </a>
-          <a href="/contact-us" className="text-current">
-            <p>Contact us</p>
+          <a href="https://github.com/0xkkonrad" target="blank" className="text-current">
+            <p>Repo</p>
           </a>
         </div>
 
