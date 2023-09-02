@@ -6,9 +6,6 @@ import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
-
-import APICallerButton from "./APICallerButton";
-
 import Web3 from "web3";
 export default function Home() {
   const { data: session, status } = useSession();
