@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Web3Button, useWeb3Modal} from "@web3modal/react";
+import { Web3Button, useWeb3Modal } from "@web3modal/react";
 import { data } from "autoprefixer";
 import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
@@ -23,65 +23,63 @@ export default function Home() {
   }, [signMessageData]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="nav">
-        <div className="menu">
-          <a href="/about">
-            <p>Why?</p>
+    <main className="p-12">
+      <div className="flex justify-between items-center w-full p-4">
+        <h1 className="text-3xl">Repporter</h1>
+
+        <div className="flex justify-end items-center space-x-12">
+          <a href="/about-us" className="text-current">
+            <p>About us</p>
           </a>
-          <a href="https://github.com/0xkkonrad/repporter/">
-            <p>Repo</p>
+          <a href="/our-mission" className="text-current">
+            <p>Our Mission</p>
+          </a>
+          <a href="/contact-us" className="text-current">
+            <p>Contact us</p>
           </a>
         </div>
       </div>
 
-      <div className="hero">
-        <div className="hero-text">
-          <h1>Repporter</h1>
-          <p>Rep your port repo port lorem ipsum.</p>
-          <div className="buttons">
-            <a className="button primary" href="/verify" target="_blank">
-              Verify
-            </a>
-            {/* <Web3Button className="button invert"/> */}
-
-            <button className="primary button text-7xl" onClick={() => open()}>
-              Connect
-            </button>
-
-            <Web3Button />
-
-
-          </div>
-        </div>
-
-        <form
-          className="flex flex-col gap-2"
-          onSubmit={(event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target as HTMLFormElement);
-            const message = formData.get("message") as string;
-            signMessage({
-              message: message,
-            });
-          }}
+      <div className="flex w-full h-1/2 flex-wrap gap-2">
+        <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+          Github
+        </button>
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+          +
+        </button>
+        <button
+          onClick={() => open()}
+          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
         >
-          <label>Enter a message to sign in the wallet</label>
-          <input
-            type="text"
-            id="message"
-            name="message"
-            placeholder="peanut is awesome"
-          />
-          <button onClick={() => signIn("google")}>Sign in with Google</button>
-        </form>
+          Connect Wallet
+        </button>
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+          =
+        </button>
+        <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert">
+          <form
+            className=""
+            onSubmit={(event) => {
+              event.preventDefault();
+              const formData = new FormData(event.target as HTMLFormElement);
+              const message = formData.get("message") as string;
+              signMessage({
+                message: message,
+              });
+            }}
+          >
+            <button onClick={() => signIn("google")}>Sign</button>
+          </form>
+        </button>
+      </div>
 
-        {/* blobs */}
-        <div className="blob-cont">
-          <div className="yellow blob"></div>
-          <div className="red blob"></div>
-          <div className="green blob"></div>
-        </div>
+
+
+      {/* blobs */}
+      <div className="blob-cont">
+        <div className="yellow blob"></div>
+        <div className="red blob"></div>
+        <div className="green blob"></div>
       </div>
 
       <button onClick={() => signOut()}>Sign out</button>

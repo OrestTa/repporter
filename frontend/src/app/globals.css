@@ -16,23 +16,6 @@
   }
 }
 
-body {
-  height: 100vh;
-  margin: 0;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 3em;
-  
-  background-color: var(--bg);
-  font-family: "Recoleta";
-  
-  margin: 0 10em;
-}
-
-
 :root {
   --bg: #F0DBA5;
   --text: #151515;
@@ -61,25 +44,6 @@ a {
   color: inherit;
 }
 
-body::before,
-body::after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  content: '';
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  opacity: 40%;
-}
-
-body::before {
-  background: #8C8C8C;
-  filter: url(#noiseFilter);
-}
-
-
 /* Blobs */
 .blob-cont {
   display: flex;
@@ -87,8 +51,8 @@ body::before {
   justify-content: center;
   align-items: center;
   z-index: -2;
-  height: 500px;
-  width: 500px;
+  height: 100%;
+  width: 100%;
   position: relative;
   right: 5em;
 }
@@ -151,78 +115,6 @@ body::before {
   30% {top: 150px; right: 150px;transform: scale(1.4);}
   60% {top: 250px; right: 100px;transform: scale(1);}
   100% {top: 250px; right: 0px; transform: scale(1);}
-}
-
-
-/* the rest of the page */
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3em;
-}
-
-.hero {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 80;
-  gap: 3em;
-  background:
-        linear-gradient(to right, #151515 1px, transparent 1px) 0 0,
-        linear-gradient(to right, #151515 1px, transparent 1px) 0 100%,
-        linear-gradient(to left, #151515 1px, transparent 1px) 100% 0,
-        linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%,
-        linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0,
-        linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0,
-        linear-gradient(to top, #151515 1px, transparent 1px) 0 100%,
-        linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-      
-}
-
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2em;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 2em;
-}
-
-.button {
-  padding: 1em 1em !important;
-  border: 1px solid var(--text) !important;
-}
-
-.primary {
-  background-color: var(--text);
-  color: #DED3B6;
-}
-
-@media only screen and (max-width: 1000px) {
-  body {
-    margin: 1em;
-  }
 }
 
 
