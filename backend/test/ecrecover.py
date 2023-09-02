@@ -1,7 +1,6 @@
 from web3 import Web3
 
-w3 = Web3(Web3.HTTPProvider('https://eth-goerli.public.blastapi.io')) # Goerli testnet
-
+w3 = Web3(Web3.HTTPProvider("https://eth-goerli.public.blastapi.io"))  # Goerli testnet
 
 
 # def ecrecover(message: str, signature: str) -> str:
@@ -37,15 +36,19 @@ def ecrecover(message: str, signature: str) -> str:
     :return: The address that signed the message.
     """
     # Convert message to bytes
-    message_bytes = bytes(message, 'utf-8')
-    
+    message_bytes = bytes(message, "utf-8")
+
     # Obtain the Ethereum-specific signature hash of the message
-    message_hash = Web3.solidity_keccak(['string', 'bytes32'], ['\x19Ethereum Signed Message:\n32', Web3.keccak(text=message)])
-    
+    message_hash = Web3.solidity_keccak(
+        ["string", "bytes32"],
+        ["\x19Ethereum Signed Message:\n32", Web3.keccak(text=message)],
+    )
+
     # Recover the address
     # return w3.eth.account.recover_hash(message_hash, signature=signature)
 
     return w3.eth.account._recover_hash(message_hash, signature=signature)
+
 
 message = "I♥SF"
 signature = "0xe6ca9bba58c88611fad66a6ce8f996908195593807c4b38bd528d2cff09d4eb33e5bfbbf4d3e39b1a2fd816a7680c19ebebaf3a141b239934ad43cb33fcec8ce1c"  # The signature should be 65 bytes long (r, s, v)

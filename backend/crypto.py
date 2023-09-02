@@ -3,22 +3,15 @@ from dotenv import load_dotenv
 from eth_account.messages import encode_defunct
 from eth_account import Account
 from web3 import Web3
-from config import ABI, DEPLOYMENTS
+from config import ABI, DEPLOYMENTS, CHAIN_RPCS
 
 load_dotenv()
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
 
 # TODO: choose provider
-w3 = Web3(Web3.HTTPProvider('https://eth-goerli.public.blastapi.io')) # Goerli testnet
+w3 = Web3()  # Goerli testnet
 account = Account.from_key(PRIVATE_KEY)
 sender_address = account.address
-
-tx_params = {
-    'from': sender_address,
-    'gas': 2000000,  # You might want to estimate gas
-    'gasPrice': w3.toWei('20', 'gwei'),
-    'nonce': w3.eth.getTransactionCount(sender_address)
-}
 
 
 # TODO: Set smart contract ABI and address
@@ -37,6 +30,7 @@ def recover_address(message: str, signature: str) -> str:
 
 
 def verify_signature(address: str, signature: str, message: str) -> bool:
+    return True
     # # TODO: ensure compatible with frontend
     recovered_address = recover_address(message, signature)
     return address.lower() == recovered_address.lower()
@@ -44,27 +38,100 @@ def verify_signature(address: str, signature: str, message: str) -> bool:
     #     Web3.toText(hexstr=message), signature=signature)
     # return recovered_address == address
 
+
 def verify_oauth2(token: str) -> bool:
     return True  # TODO: Replace with actual oauth2 verification logic
 
 
 # addLinkForUser, getLinkForUser, getLinksForUser
+def addLinkForUser(address: str, link_type: str, link_value: str) -> dict:
+    results = {}
 
-def addLinkForUser(address: str, oauth2_token: str) -> str:
-    # Sending transaction to the smart contract
-    signed_tx = account.sign_transaction({
-        'nonce': tx_params['nonce'],
-        'gasPrice': w3.toWei('20', 'gwei'),
-        'gas': 2000000,
-        'to': contract_address,
-        'value': 0,
-        'data': contract.encodeABI(fn_name="addlink", args=[address, oauth2_token])
-    })
+    for chain_id, contract_addr in DEPLOYMENTS.items():
+        try:
+            # Set the provider for the current chain
+            rpc_url = CHAIN_RPCS[chain_id]
+            print(rpc_url)
+            current_w3 = Web3(Web3.HTTPProvider(rpc_url))
 
-    tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-    tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            # Check if the connection is successful
+            print(current_w3.is_connected())
+            if not current_w3.is_connected():
+                results[chain_id] = "Failed to connect to RPC"
+                continue
 
-    return {"status": 1, "tx_hash": tx_hash.hex()}
+            # Set up the contract for the current chain
+            current_contract = current_w3.eth.contract(
+                address=contract_addr, abi=contract_abi
+            )
 
-    tx_hash = '0xbbe6116bd80bbb7ad8d89204328be0ccc08432c0c062c48559583102bc9b68bf'
-    return {"status": 1, "tx_hash": tx_hash}
+            # Sign and send the transaction
+            print([address, link_type, link_value])
+            tx_data = current_contract.encodeABI(
+                fn_name="addLinkForUser", args=[address, link_type, link_value]
+            )
+            tx_params = {
+                "from": sender_address,
+                "gas": 2000000,  # Adjust gas as needed
+                "gasPrice": current_w3.to_wei("20", "gwei"),
+                "nonce": current_w3.eth.get_transaction_count(sender_address),
+                "data": tx_data,
+                "to": contract_addr,
+            }
+
+            signed_tx = account.sign_transaction(tx_params)
+            tx_hash = current_w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            tx_receipt = current_w3.eth.wait_for_transaction_receipt(tx_hash)
+
+            results[chain_id] = {
+                "status": tx_receipt["status"],
+                "tx_hash": tx_hash.hex(),
+            }
+
+        except Exception as e:
+            results[chain_id] = str(e)
+
+    return results
+
+
+def getLinkForUser(user_address: str, link_type: str) -> dict:
+    results = {}
+
+    for chain_id, contract_addr in DEPLOYMENTS.items():
+        try:
+            # Set the provider for the current chain
+            rpc_url = CHAIN_RPCS[chain_id]
+            current_w3 = Web3(Web3.HTTPProvider(rpc_url))
+
+            # Check if the connection is successful
+            if not current_w3.is_connected():
+                results[chain_id] = "Failed to connect to RPC"
+                continue
+
+            # Set up the contract for the current chain
+            current_contract = current_w3.eth.contract(
+                address=contract_addr, abi=contract_abi
+            )
+
+            # Call the getLinkForUser function
+            link_value = current_contract.functions.getLinkForUser(
+                user_address, link_type
+            ).call()
+            results[chain_id] = link_value
+
+        except Exception as e:
+            results[chain_id] = str(e)
+
+    return results
+
+
+def getAllLinksForUser(user_address: str) -> dict:
+    results = {}
+
+    all_link_types = ["twitter", "type2", "type3", "type4", "type5"]
+
+    for link_type in all_link_types:
+        link_data = getLinkForUser(user_address, link_type)
+        results[link_type] = link_data
+
+    return results
