@@ -27,4 +27,3 @@ Unlicense
 # Smart Contract
 
 See [/contract](/contract)
-    
