@@ -76,7 +76,9 @@ def index():
     #!/bin/bash
 
     # Set the API endpoint base URL (adjust as needed)
-    API_BASE="http://localhost:5000"
+    # API_BASE="http://localhost:5000"
+    API_BASE="https://repporter.onrender.com"
+    
 
     echo "===================================="
     echo "API CALLS EXAMPLE"
