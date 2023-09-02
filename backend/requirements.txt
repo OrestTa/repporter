@@ -3,3 +3,4 @@ web3
 eth-account
 black
 python-dotenv
+gunicorn
