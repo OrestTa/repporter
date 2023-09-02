@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set the API endpoint base URL (adjust as needed)
-# API_BASE="http://localhost:5000"
-API_BASE="https://repporter-uij0.onrender.com/"
+API_BASE="http://localhost:5000"
+# API_BASE="https://repporter-uij0.onrender.com/"
 
 echo "===================================="
 echo "API CALLS EXAMPLE"
@@ -27,7 +27,6 @@ curl -X POST $API_BASE/api/addlink \
         "linkValue": "'$LINK_VALUE'"
     }'
 echo
-
 
 # Get Link API Call
 echo "Fetching a link..."
