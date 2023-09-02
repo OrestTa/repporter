@@ -210,9 +210,8 @@ body::before {
 }
 
 .button {
-  padding: 1em 3em !important;
+  padding: 1em 1em !important;
   border: 1px solid var(--text) !important;
-  font-size: 18px !important;
 }
 
 .primary {

@@ -1,16 +1,15 @@
 "use client";
 import Image from "next/image";
-import { Web3Button } from "@web3modal/react";
+import { Web3Button, useWeb3Modal} from "@web3modal/react";
 import { data } from "autoprefixer";
 import { useRef, useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { useSignMessage } from "wagmi";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-
 export default function Home() {
   const { data: session, status } = useSession();
-  const { open, close } = Web3Button();
+  const { open, close } = useWeb3Modal();
   const {
     data: signMessageData,
     error,
@@ -24,10 +23,9 @@ export default function Home() {
   }, [signMessageData]);
 
   return (
-    
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div class="nav">
-        <div class="menu">
+      <div className="nav">
+        <div className="menu">
           <a href="/about">
             <p>Why?</p>
           </a>
@@ -37,24 +35,23 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="hero">
-        <div class="hero-text">
+      <div className="hero">
+        <div className="hero-text">
           <h1>Repporter</h1>
           <p>Rep your port repo port lorem ipsum.</p>
-          <div class="buttons">
-            <a class="button primary" href="/verify" target="_blank">
+          <div className="buttons">
+            <a className="button primary" href="/verify" target="_blank">
               Verify
             </a>
             {/* <Web3Button className="button invert"/> */}
 
-            <button className="text-7xl" onClick={() => open()}>Connect</button>
+            <button className="primary button text-7xl" onClick={() => open()}>
+              Connect
+            </button>
 
-            <Web3Button
-              themeVariables={{
-                "--w3m-font-family": "Roboto, sans-serif",
-                "--w3m-accent-color": "#F5841F",
-              }}
-            />
+            <Web3Button />
+
+
           </div>
         </div>
 
