@@ -22,7 +22,7 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
-  const API_BASE = "https://repporter.onrender.com";
+  const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
     const ADDRESS = "0x71C9E62FA7293D43765692A408483B2fC7c7f0C6";
@@ -101,14 +101,13 @@ export default function Home() {
 
         <div className="flex justify-end items-center space-x-12">
           <a
-            href="https://github.com/0xkkonrad"
+            href="https://github.com/0xkkonrad/repporter/"
             target="blank"
             className="text-current"
           >
             <p>Repo</p>
           </a>
         </div>
-
       </div>
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
@@ -142,7 +141,6 @@ export default function Home() {
         </button>
 
         <APICallerButton />
-
       </div>
 
       {/* blobs */}

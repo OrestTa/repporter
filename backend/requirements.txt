@@ -4,3 +4,4 @@ eth-account
 black
 python-dotenv
 gunicorn
+flask_cors
