@@ -311,3 +311,4 @@ broadcast/
 # vscode
 .vscode/
 frontend/.env
+frontend/.env.example
