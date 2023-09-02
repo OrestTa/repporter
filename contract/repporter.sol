@@ -4,10 +4,10 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 /** 
- * @title Ballot
- * @dev Implements the zkVoting process
+ * @title Repporter
+ * @dev Implements the repporter
  */
-contract Ballot {
+contract Repporter {
     address public chairperson; // this contract's deployer
 
     uint public quorumInFavour;
