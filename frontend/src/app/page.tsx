@@ -158,6 +158,7 @@ export default function Home() {
           <label>{signMessageData}</label>
         </div>
       )}
+      v0.1
     </main>
   );
 }
