@@ -12,9 +12,12 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: any) {
+    async jwt({ token, user, account }: any) {
       if (user?._id) token._id = user._id;
       if (user?.isAdmin) token.isAdmin = user.isAdmin;
+      if (account) {
+        token.accessToken = account.access_token;
+      }
       return token;
   },
   async session({ session, token, user }: any) {
@@ -25,6 +28,13 @@ export const options: NextAuthOptions = {
       if (token?.sub) session.user._id = token.sub;
   
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
+      console.log("Session:",session)
+
+
+      if (user?._id) token._id = user._id;
+      if (user?.isAdmin) token.isAdmin = user.isAdmin;
+      console.log("Token:",token)
+
       return session;
   },
   }
