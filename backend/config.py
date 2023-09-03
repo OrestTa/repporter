@@ -62,3 +62,8 @@ GAS_PRICE = {
     5001: 4000,
     44787: 20000000000,
 }
+
+EXPLORERS = {
+    5001: "https://explorer.testnet.mantle.xyz/",
+    44787: "https://alfajores.celoscan.io/"
+}

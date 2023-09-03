@@ -35,3 +35,4 @@ Unlicense
 # Future Work
 
 - [ ] Require users to pay for the gas needed to update their links
+- [ ] Input validation, error handling
