@@ -73,7 +73,7 @@ def get_link():
 @app.route("/")
 def index():
     return """
-    <h1>Repporter Backend v0.4</h1>
+    <h1>Repporter Backend v0.5</h1>
     <p>Example usage:</p>
     <pre>
     #!/bin/bash
