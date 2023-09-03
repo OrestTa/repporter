@@ -33,11 +33,12 @@ export default function Home() {
   const APICallerButton = () => {
     const { data: session, status } = useSession();
 
-    const [jit, setJit] = useState(undefined);
+    const [accessToken, setAccessToken] = useState(undefined);
     const [name, setName] = useState(undefined);
 
     useEffect(() => {
-      setJit(session?.accessToken);
+      console.log("Session access token",session?.accessToken)
+      setAccessToken(session?.accessToken);
       setName(session?.name);
     }, [session]);
 
@@ -67,27 +68,34 @@ export default function Home() {
 
     const ADDRESS = userAddress;
     const SIGNATURE = signMessageData;
-    const OAUTH2_TOKEN = jit;
+    const OAUTH2_TOKEN = accessToken;
     const LINK_TYPE = "github";
     const LINK_VALUE = name;
 
     const addLink = async () => {
-      const response = await fetch(`${API_BASE}/api/addlink`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          address: ADDRESS,
-          signature: SIGNATURE,
-          oauth2Token: OAUTH2_TOKEN,
-          linkType: LINK_TYPE,
-          linkValue: LINK_VALUE,
-        }),
-      });
+      console.log(JSON.stringify({
+        address: ADDRESS,
+        signature: SIGNATURE,
+        oauth2Token: OAUTH2_TOKEN,
+        linkType: LINK_TYPE,
+        linkValue: LINK_VALUE,
+      }))
+      // const response = await fetch(`${API_BASE}/api/addlink`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     address: ADDRESS,
+      //     signature: SIGNATURE,
+      //     oauth2Token: OAUTH2_TOKEN,
+      //     linkType: LINK_TYPE,
+      //     linkValue: LINK_VALUE,
+      //   }),
+      // });
 
-      const data = await response.json();
-      console.log("Add Link Response:", data);
+      // const data = await response.json();
+      // console.log("Add Link Response:", data);
     };
 
     const handleButtonClick = async () => {
