@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useSignMessage } from "wagmi";
-import Web3 from "web3";
+import { useWeb3Modal } from "@web3modal/react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { useSignMessage } from "wagmi"
+import Web3 from "web3"
 
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
@@ -138,7 +138,7 @@ export default function Home() {
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ " + session?.user.email,
+        message: "Sign mapping your wallet address to Github, " + session?.user.name,
       });
 
       console.log("End of API Calls");
