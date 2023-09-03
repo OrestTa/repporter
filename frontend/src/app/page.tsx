@@ -156,6 +156,14 @@ export default function Home() {
 
   return (
     <main className="p-12">
+
+      {/* blobs */}
+      <div className="blob-cont">
+        <div className="yellow blob"></div>
+        <div className="red blob"></div>
+        <div className="green blob"></div>
+      </div>
+
       <div className="flex justify-between items-center w-full p-4">
         <div className="wrapper">
           <div className="typing-demo text-3xl">Repporter</div>
@@ -209,12 +217,7 @@ export default function Home() {
         <APICallerButton />
       </div>
 
-      {/* blobs */}
-      <div className="blob-cont">
-        <div className="yellow blob"></div>
-        <div className="red blob"></div>
-        <div className="green blob"></div>
-      </div>
+
 
       <div>
         {signMessageData && (
