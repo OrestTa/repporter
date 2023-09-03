@@ -219,7 +219,9 @@ export default function Home() {
         )}
       </div>
 
-      <form className="w-full">
+      <form className="w-full" onSubmit={(e)=>{
+        e.preventDefault()
+      }}>
         <label
           htmlFor="inputField"
           className="flex w-full flex-row gap-2 p-4 md:p-8 text-white text-lg items-center justify-center my-6"
