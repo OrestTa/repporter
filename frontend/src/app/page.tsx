@@ -130,15 +130,19 @@ export default function Home() {
       </div>
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
-        <div
-          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
-          onClick={() => signIn("github")}
-        >
-          Github
-          {status === "authenticated" && (
-            <button onClick={() => signOut()}>Sign out</button>
-          )}
-        </div>
+        {status !== "authenticated" && (
+          <div
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+            onClick={() => signIn("github")}
+          >
+            Github
+          </div>
+        )}
+
+        {status === "authenticated" && (
+          <button onClick={() => signOut()}>Sign out</button>
+        )}
+
         <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
           +
         </button>
@@ -161,8 +165,12 @@ export default function Home() {
         <div className="green blob"></div>
       </div>
 
-      <div >
-        {signMessageData && <label className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6">{signMessageData}</label>}
+      <div>
+        {signMessageData && (
+          <label className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6">
+            {signMessageData}
+          </label>
+        )}
       </div>
     </main>
   );
