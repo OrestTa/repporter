@@ -158,19 +158,19 @@ export default function Home() {
         <div className="green blob"></div>
       </div>
 
-      <div className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-7xl items-center justify-center hover:invert py-6 my-6">
         {status === "authenticated" && (
-          <button onClick={() => signOut()}>Sign out</button>
-        )}
-        {status === "authenticated"}
-        {/* && <div>{session.email as string}</div>} */}
+      <div className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-7xl items-center justify-center hover:invert py-6 my-6">
 
-        {signMessageData && (
+          <button onClick={() => signOut()}>Sign out</button>
+      </div>
+
+        )}
+
+      {signMessageData && (
           <div className="bg-white text-black text-xl">
             <label>{signMessageData}</label>
           </div>
         )}
-      </div>
     </main>
   );
 }
