@@ -14,17 +14,16 @@ export default function Home() {
     signMessage,
     variables,
   } = useSignMessage();
-  async function getLink(){
-   // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
-   console.log("sending")
-   const response = await fetch(
-     // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
-     `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
-
-   );
-   const data = await response.json();
-   console.log("Get Link Response:", data);
-  }  
+  async function getLink() {
+    // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
+    console.log("sending");
+    const response = await fetch(
+      // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
+      `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
+    );
+    const data = await response.json();
+    console.log("Get Link Response:", data);
+  }
   useEffect(() => {
     console.log(signMessageData);
   }, [signMessageData]);
@@ -125,7 +124,7 @@ export default function Home() {
             target="blank"
             className="text-current"
           >
-            <p>Repo v.0.1</p>
+            Repo v.0.1
           </a>
         </div>
       </div>
@@ -141,10 +140,15 @@ export default function Home() {
         )}
 
         {status === "authenticated" && (
-          <button className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={() => signOut()}>Sign out</button>
+          <button
+            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+            onClick={() => signOut()}
+          >
+            Sign out
+          </button>
         )}
 
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center cursor-default invert">
           +
         </button>
         <button
@@ -153,7 +157,7 @@ export default function Home() {
         >
           Connect Wallet
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center  cursor-default invert">
           =
         </button>
         <APICallerButton />
@@ -173,12 +177,24 @@ export default function Home() {
           </label>
         )}
       </div>
-      {signMessageData && (
-          <div className="bg-white text-black text-xl">
-            <label>{signMessageData}</label>
-          </div>
-        )}
-        <button onClick={getLink}>CHECK</button>
+
+      <form className="w-full">
+        <label
+          htmlFor="inputField"
+          className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6"
+        >
+          {signMessageData}
+          <input
+            id="inputField"
+            type="text"
+            className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6"
+            placeholder="Enter your data here"
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+
+      <button onClick={getLink}>CHECK</button>
     </main>
   );
 }
