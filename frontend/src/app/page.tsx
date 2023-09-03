@@ -34,11 +34,12 @@ export default function Home() {
   const APICallerButton = () => {
     const { data: session, status } = useSession();
 
-    const [jit, setJit] = useState(undefined);
+    const [accessToken, setAccessToken] = useState(undefined);
     const [name, setName] = useState(undefined);
 
     useEffect(() => {
-      setJit(session?.accessToken);
+      console.log("Session access token",session?.accessToken)
+      setAccessToken(session?.accessToken);
       setName(session?.name);
     }, [session]);
 
@@ -68,7 +69,7 @@ export default function Home() {
 
     const ADDRESS = userAddress;
     const SIGNATURE = signMessageData;
-    const OAUTH2_TOKEN = jit;
+    const OAUTH2_TOKEN = accessToken;
     const LINK_TYPE = "github";
     const LINK_VALUE = name;
 
