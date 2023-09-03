@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useSignMessage } from "wagmi";
 import Web3 from "web3";
 export default function Home() {
+  const [addressInput, setAddressInput] = useState("");
+
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
   const {
@@ -14,17 +16,22 @@ export default function Home() {
     signMessage,
     variables,
   } = useSignMessage();
-  async function getLink(){
-   // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
-   console.log("sending")
-   const response = await fetch(
-     // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
-     `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
 
-   );
-   const data = await response.json();
-   console.log("Get Link Response:", data);
-  }  
+  async function getLink() {
+    // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
+    console.log("sending");
+    const response = await fetch(
+      `https://repporter-uij0.onrender.com/api/getlink?address=${addressInput}&linkType=github`
+      // `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
+    );
+    const data = await response.json();
+    console.log("Get Link Response:", data);
+  }
+
+  useEffect(() => {
+    console.log(signMessageData);
+  }, [signMessageData]);
+
   const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
@@ -34,7 +41,9 @@ export default function Home() {
     const [name, setName] = useState(undefined);
 
     useEffect(() => {
-    console.log(session)
+      console.log("Session access token", session?.accessToken);
+      setAccessToken(session?.accessToken);
+      setName(session?.name);
     }, [session]);
     const [userAddress, setUserAddres] = useState(undefined);
     if (
@@ -71,6 +80,28 @@ export default function Home() {
         const OAUTH2_TOKEN = session?.accessToken;
         const LINK_TYPE = "github";
         const LINK_VALUE = session?.user.name;
+      console.log(
+        JSON.stringify({
+          address: ADDRESS,
+          signature: SIGNATURE,
+          oauth2Token: OAUTH2_TOKEN,
+          linkType: LINK_TYPE,
+          linkValue: LINK_VALUE,
+        })
+      );
+      // const response = await fetch(`${API_BASE}/api/addlink`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     address: ADDRESS,
+      //     signature: SIGNATURE,
+      //     oauth2Token: OAUTH2_TOKEN,
+      //     linkType: LINK_TYPE,
+      //     linkValue: LINK_VALUE,
+      //   }),
+      // });
 
         const body = JSON.stringify({
           address: ADDRESS,
@@ -106,7 +137,7 @@ export default function Home() {
 
     return (
       <button
-        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl  flex items-center justify-center hover:invert"
         onClick={handleButtonClick}
       >
         Sign
@@ -127,7 +158,7 @@ export default function Home() {
             target="blank"
             className="text-current"
           >
-            <p>Repo v.0.1</p>
+            Repo v.0.1
           </a>
         </div>
       </div>
@@ -135,7 +166,7 @@ export default function Home() {
       <div className="flex w-full h-1/2 flex-wrap gap-2">
         {status !== "authenticated" && (
           <div
-            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl flex items-center justify-center hover:invert"
             onClick={() => signIn("github")}
           >
             Github
@@ -143,19 +174,24 @@ export default function Home() {
         )}
 
         {status === "authenticated" && (
-          <button className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={() => signOut()}>Sign out</button>
+          <button
+            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl flex items-center justify-center hover:invert"
+            onClick={() => signOut()}
+          >
+            Sign out
+          </button>
         )}
 
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl flex items-center justify-center cursor-default invert">
           +
         </button>
         <button
           onClick={() => open()}
-          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl flex items-center justify-center hover:invert"
         >
           Connect Wallet
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
+        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-7xl flex items-center justify-center  cursor-default invert">
           =
         </button>
         <APICallerButton />
@@ -175,12 +211,31 @@ export default function Home() {
           </label>
         )}
       </div>
-      {signMessageData && (
-          <div className="bg-white text-black text-xl">
-            <label>{signMessageData}</label>
-          </div>
-        )}
-        <button onClick={getLink}>CHECK</button>
+
+      <form className="w-full">
+        <label
+          htmlFor="inputField"
+          className="flex w-full flex-row gap-2 p-4 md:p-8 text-white text-lg items-center justify-center my-6"
+        >
+          {signMessageData}
+          <input
+            id="inputField"
+            type="text"
+            className="flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center py-2"
+            placeholder="Enter a wallet to check"
+            value={addressInput}
+            onChange={(e) => setAddressInput(e.target.value)}
+          />
+
+          <button
+            type="submit"
+            onClick={getLink}
+            className="bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center py-2 hover:invert"
+          >
+            Check
+          </button>
+        </label>
+      </form>
     </main>
   );
 }

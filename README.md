@@ -31,3 +31,8 @@ Unlicense
 - [Frontend](/frontend)
 - [Backend](/backend)
 - [Smart Contract](/contract)
+
+# Future Work
+
+- [ ] Require users to pay for the gas needed to update their links
+- [ ] Input validation, error handling

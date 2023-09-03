@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from eth_account.messages import encode_defunct
 from eth_account import Account
 from web3 import Web3
-from config import ABI, DEPLOYMENTS, CHAIN_RPCS
+from config import ABI, DEPLOYMENTS, CHAIN_RPCS, GAS_PRICE, EXPLORERS
 
 load_dotenv()
 PRIVATE_KEY = os.getenv("PRIVATE_KEY")
@@ -73,7 +73,7 @@ def addLinkForUser(address: str, link_type: str, link_value: str) -> dict:
             tx_params = {
                 "from": sender_address,
                 "gas": 2000000,  # Adjust gas as needed
-                "gasPrice": current_w3.to_wei("20", "gwei"),
+                "gasPrice": current_w3.to_wei(GAS_PRICE[chain_id], "wei"),
                 "nonce": current_w3.eth.get_transaction_count(sender_address),
                 "data": tx_data,
                 "to": contract_addr,
@@ -86,6 +86,7 @@ def addLinkForUser(address: str, link_type: str, link_value: str) -> dict:
             results[chain_id] = {
                 "status": tx_receipt["status"],
                 "tx_hash": tx_hash.hex(),
+                "tx_link": EXPLORERS[chain_id] + "tx/" + tx_hash.hex(),
             }
 
         except Exception as e:
