@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react"
-import { signIn, signOut, useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
-import { useSignMessage } from "wagmi"
-import Web3 from "web3"
+import { useWeb3Modal } from "@web3modal/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSignMessage } from "wagmi";
+import Web3 from "web3";
 
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
@@ -18,9 +18,7 @@ export default function Home() {
     variables,
   } = useSignMessage();
 
-
-  const [getLinkData, setGetLinkData] = useState<any>(undefined)
-  
+  const [getLinkData, setGetLinkData] = useState<any>(undefined);
 
   async function getLink() {
     // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
@@ -142,7 +140,8 @@ export default function Home() {
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign mapping your wallet address to Github, " + session?.user.name,
+        message:
+          "Sign mapping your wallet address to Github, " + session?.user.name,
       });
 
       console.log("End of API Calls");
@@ -158,14 +157,13 @@ export default function Home() {
     );
   };
 
-
-useEffect(()=>{
-console.log("GET LINK DATA:",getLinkData)
-if(getLinkData!==undefined){
-  console.log(getLinkData.link[44787])
-    console.log(getLinkData.link[5001])
-  }
-},[getLinkData])
+  useEffect(() => {
+    console.log("GET LINK DATA:", getLinkData);
+    if (getLinkData !== undefined) {
+      console.log(getLinkData.link[44787]);
+      console.log(getLinkData.link[5001]);
+    }
+  }, [getLinkData]);
 
   return (
     <main className="p-12">
@@ -261,27 +259,23 @@ if(getLinkData!==undefined){
           </button>
         </label>
       </form>
-      <div className="flex justify-center mx-auto bg-white p-20 divide-x-8">
-        <div className="flex flex-col">
-          <div className="flex flex-row justify-between gap-32">
-            <div className="text-3xl">
-              Mantle
-            </div>
-            <div className="text-3xl">
-              Celo
-            </div>
-          </div>
-          <div className="flex flex-row justify-between gap-16 pt-2 ">
-            <div>
-            
-            {getLinkData && getLinkData.link[44787]}
-            </div>
-            <div>
-            
-            {getLinkData && getLinkData.link[5001]}
-            </div>
-          </div>
 
+      <div className="flex justify-center mx-auto p-5 divide-x-8">
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between text-white gap-32">
+            <div className="text-lg bg-[#151515] p-10 text-clip	">
+              Mantle
+              <p className="text-xl text-clip	 break-all">
+                {getLinkData && getLinkData.link[5001]}{" "}
+              </p>
+            </div>
+            <div className="text-lg bg-[#151515] p-10 text-clip	 break-all">
+              Celo
+              <p className="text-3xl text-clip	">
+                {getLinkData && getLinkData.link[44787]}{" "}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </main>
