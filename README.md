@@ -21,13 +21,13 @@ As an end-user, you can provide a simple receipt that proves that you control a 
 
 # Future Improvements
 
-[ ] Onchain storage and verifiable compute of user signature
-[ ] Attesting as Ethereum Attestation Service
-[ ] Additional web2 identities' support
-[ ] Additional networks' support
-[ ] Require users to pay for the gas needed to update their links
-[ ] Input validation, error handling
-[ ] Use a less trusted model, e.g. via zk
+- [ ] Onchain storage and verifiable compute of user signature
+- [ ] Attesting as Ethereum Attestation Service
+- [ ] Additional web2 identities' support
+- [ ] Additional networks' support
+- [ ] Require users to pay for the gas needed to update their links
+- [ ] Input validation, error handling
+- [ ] Use a less trusted model, e.g. via zk
 
 # Demo
 
