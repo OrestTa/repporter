@@ -14,7 +14,17 @@ export default function Home() {
     signMessage,
     variables,
   } = useSignMessage();
+  async function getLink(){
+   // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
+   console.log("sending")
+   const response = await fetch(
+     // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
+     `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
 
+   );
+   const data = await response.json();
+   console.log("Get Link Response:", data);
+  }  
   useEffect(() => {
     console.log(signMessageData);
   }, [signMessageData]);
@@ -81,14 +91,6 @@ export default function Home() {
       console.log("Add Link Response:", data);
     };
 
-    const getLink = async () => {
-      const response = await fetch(
-        `${API_BASE}/api/getlink?address=${ADDRESS}&linkType=${LINK_TYPE}`
-      );
-      const data = await response.json();
-      console.log("Get Link Response:", data);
-    };
-
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
@@ -96,7 +98,6 @@ export default function Home() {
       });
       setTimeout(async () => {
         await addLink();
-        await getLink();
       }, 5000);
       console.log("End of API Calls");
     };
@@ -171,6 +172,7 @@ export default function Home() {
             <label>{signMessageData}</label>
           </div>
         )}
+        <button onClick={getLink}>CHECK</button>
     </main>
   );
 }
