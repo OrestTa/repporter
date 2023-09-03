@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { useSignMessage } from "wagmi"
 import Web3 from "web3"
+
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
 
@@ -73,12 +74,6 @@ export default function Home() {
         );
       }
     }, [])
-
-    const ADDRESS = userAddress;
-    const SIGNATURE = signMessageData;
-    const OAUTH2_TOKEN = accessToken;
-    const LINK_TYPE = "github";
-    const LINK_VALUE = name;
 
     useEffect(()=>{
       if(signMessageData!==undefined && userAddress!==undefined) {
