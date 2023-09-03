@@ -96,12 +96,12 @@ a {
 
 @keyframes yellow {
   0% {
-    top: 200px;
+    top: 100px;
     left: 100px;
     transform: scale(1);
   }
   30% {
-    top: 300px;
+    top: 200px;
     left: 150px;
     transform: scale(1.2);
   }
@@ -111,7 +111,7 @@ a {
     transform: scale(1.3);
   }
   100% {
-    top: 200px;
+    top: 50px;
     left: 100px;
     transform: scale(1);
   }
@@ -124,12 +124,12 @@ a {
     transform: scale(1.2);
   }
   30% {
-    top: 300px;
+    top: 100px;
     right: -20px;
     transform: scale(1);
   }
   60% {
-    top: 200px;
+    top: 120px;
     right: 100px;
     transform: scale(1);
   }
@@ -142,22 +142,22 @@ a {
 
 @keyframes red {
   0% {
-    top: 250px;
+    top: 150px;
     right: 0px;
     transform: scale(1);
   }
   30% {
-    top: 150px;
+    top: 100px;
     right: 150px;
     transform: scale(1.4);
   }
   60% {
-    top: 250px;
+    top: 50px;
     right: 100px;
     transform: scale(1);
   }
   100% {
-    top: 250px;
+    top: 100px;
     right: 0px;
     transform: scale(1);
   }
