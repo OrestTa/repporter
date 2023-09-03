@@ -43,6 +43,7 @@ contract Repporter {
         owner = newOwner;
     }
 
+    // TODO: Add usersignature
     function addLinkForUser(address useraddress, string calldata linkType, string calldata linkValue) public isOwner {
         useraddressesAddresslinks[useraddress][linkType] = linkValue;
     }
