@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useSignMessage } from "wagmi";
 import Web3 from "web3";
 export default function Home() {
+  const [addressInput, setAddressInput] = useState("");
+
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
   const {
@@ -14,16 +16,18 @@ export default function Home() {
     signMessage,
     variables,
   } = useSignMessage();
+
   async function getLink() {
     // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
     console.log("sending");
     const response = await fetch(
-      // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
-      `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
+      `https://repporter-uij0.onrender.com/api/getlink?address=${addressInput}&linkType=github`
+      // `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
     );
     const data = await response.json();
     console.log("Get Link Response:", data);
   }
+
   useEffect(() => {
     console.log(signMessageData);
   }, [signMessageData]);
@@ -37,7 +41,7 @@ export default function Home() {
     const [name, setName] = useState(undefined);
 
     useEffect(() => {
-      console.log("Session access token",session?.accessToken)
+      console.log("Session access token", session?.accessToken);
       setAccessToken(session?.accessToken);
       setName(session?.name);
     }, [session]);
@@ -73,13 +77,15 @@ export default function Home() {
     const LINK_VALUE = name;
 
     const addLink = async () => {
-      console.log(JSON.stringify({
-        address: ADDRESS,
-        signature: SIGNATURE,
-        oauth2Token: OAUTH2_TOKEN,
-        linkType: LINK_TYPE,
-        linkValue: LINK_VALUE,
-      }))
+      console.log(
+        JSON.stringify({
+          address: ADDRESS,
+          signature: SIGNATURE,
+          oauth2Token: OAUTH2_TOKEN,
+          linkType: LINK_TYPE,
+          linkValue: LINK_VALUE,
+        })
+      );
       // const response = await fetch(`${API_BASE}/api/addlink`, {
       //   method: "POST",
       //   headers: {
@@ -189,20 +195,27 @@ export default function Home() {
       <form className="w-full">
         <label
           htmlFor="inputField"
-          className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6"
+          className="flex w-full flex-row gap-2 p-4 md:p-8 text-white text-lg items-center justify-center my-6"
         >
           {signMessageData}
           <input
             id="inputField"
             type="text"
-            className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6"
-            placeholder="Enter your data here"
+            className="flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center py-2"
+            placeholder="Enter a wallet to check"
+            value={addressInput}
+            onChange={(e) => setAddressInput(e.target.value)}
           />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
 
-      <button onClick={getLink}>CHECK</button>
+          <button
+            type="submit"
+            onClick={getLink}
+            className="bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center py-2 hover:invert"
+          >
+            Check
+          </button>
+        </label>
+      </form>
     </main>
   );
 }
