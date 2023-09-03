@@ -141,7 +141,7 @@ export default function Home() {
         )}
 
         {status === "authenticated" && (
-          <button onClick={() => signOut()}>Sign out</button>
+          <button className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={() => signOut()}>Sign out</button>
         )}
 
         <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
