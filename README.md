@@ -17,7 +17,7 @@ Users should have a smooth onboarding experience where they do not need to leave
 
 # Use Cases
 
-As an end-user, you can provide a simple receipt that proves that you control a specific web2 handle. More importantly, other projects can easily ask users to verify that they control a handle in order to verify their web2 identity. The use cases for businesses are vast: from airdrop management to multi-factor authentication for large payments.
+As an end-user in web3, you can provide a simple proof that you control a specific web2 handle. More importantly, other projects can easily ask users to verify that they control a handle in order to verify their web2 identity. The use cases for businesses are vast: from airdrop management to multi-factor authentication for large payments.
 
 
 # Future Improvements
