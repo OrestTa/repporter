@@ -57,3 +57,8 @@ CHAIN_RPCS = {
     5001: "https://rpc.ankr.com/mantle_testnet", # max 4000 wei gasPrice
     44787: "https://alfajores-forno.celo-testnet.org",
 }
+
+GAS_PRICE = {
+    5001: 4000,
+    44787: 20000000000,
+}
