@@ -31,7 +31,7 @@ export const options: NextAuthOptions = {
       if (user?._id) token._id = user._id;
       if (user?.isAdmin) token.isAdmin = user.isAdmin;
 
-      return session && token;
+      return {...session,accessToken:token.access_token};
   },
   }
 }
