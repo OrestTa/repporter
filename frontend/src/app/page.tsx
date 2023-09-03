@@ -25,10 +25,6 @@ export default function Home() {
    const data = await response.json();
    console.log("Get Link Response:", data);
   }  
-  useEffect(() => {
-    console.log(signMessageData);
-  }, [signMessageData]);
-
   const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
@@ -38,12 +34,9 @@ export default function Home() {
     const [name, setName] = useState(undefined);
 
     useEffect(() => {
-      console.log("Session access token",session?.accessToken)
-      setAccessToken(session?.accessToken);
-      setName(session?.name);
+    console.log(session)
     }, [session]);
-
-    const [userAddress, setUserAddres] = useState(null);
+    const [userAddress, setUserAddres] = useState(undefined);
     if (
       typeof window !== "undefined" &&
       typeof window.ethereum !== "undefined"
@@ -66,47 +59,48 @@ export default function Home() {
         "No web3 provider detected. Please install MetaMask or use a compatible browser."
       );
     }
-
-    const ADDRESS = userAddress;
-    const SIGNATURE = signMessageData;
-    const OAUTH2_TOKEN = accessToken;
-    const LINK_TYPE = "github";
-    const LINK_VALUE = name;
-
+  
+    useEffect(()=>{
+      if(signMessageData!==undefined && userAddress!==undefined) {
+        addLink();
+      }
+       },[signMessageData, userAddress])
     const addLink = async () => {
-      console.log(JSON.stringify({
-        address: ADDRESS,
-        signature: SIGNATURE,
-        oauth2Token: OAUTH2_TOKEN,
-        linkType: LINK_TYPE,
-        linkValue: LINK_VALUE,
-      }))
-      // const response = await fetch(`${API_BASE}/api/addlink`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     address: ADDRESS,
-      //     signature: SIGNATURE,
-      //     oauth2Token: OAUTH2_TOKEN,
-      //     linkType: LINK_TYPE,
-      //     linkValue: LINK_VALUE,
-      //   }),
-      // });
+        const ADDRESS = userAddress;
+        const SIGNATURE = signMessageData;
+        const OAUTH2_TOKEN = session?.accessToken;
+        const LINK_TYPE = "github";
+        const LINK_VALUE = session?.user.name;
 
-      // const data = await response.json();
-      // console.log("Add Link Response:", data);
+        const body = JSON.stringify({
+          address: ADDRESS,
+          signature: SIGNATURE,
+          oauth2Token: OAUTH2_TOKEN,
+          linkType: LINK_TYPE,
+          linkValue: LINK_VALUE,
+        })
+
+        console.log("running...")
+        console.warn(body)
+        
+        const response = await fetch(`${API_BASE}/api/addlink`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body
+        });
+  
+        const data = await response.json();
+        console.log("Add Link Response:", data);
     };
 
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ " + session?.name,
+        message: "Sign Github @ " + session?.user.email,
       });
-      setTimeout(async () => {
-        await addLink();
-      }, 5000);
+        
       console.log("End of API Calls");
     };
 
