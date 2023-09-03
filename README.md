@@ -10,7 +10,7 @@ Repporter lets you verifiably port your web2 social reputation to web3 by provin
 
 The main advantage of Repporter is the simple and lightweight implementation with a smooth UX. All that is needed to verify which web2 identities a web3 identity controls is a single paste+click. Moreover, the mapping mechanism relies on a fully open-source smart contract, frontend and backend, using standard OAuth functionalities for the centralised web2 service interaction. Whilst this requires some trust, it is reduced through the license and a frontend-focussed approach. The main trust assumption that is needed is that the Repporter backend correctly verifies the OAuth token prior to posting the attestation to its owner-only smart contract.
 
-# Why care about UX?
+# Why Care About UX?
 
 Users should have a smooth onboarding experience where they do not need to leave behind their hard-gained web2 reputation. By creating a simple application with a smooth UX, Repporter makes onboarding non-crypto-native users more feasible.
 
@@ -29,6 +29,11 @@ As an end-user in web3, you can provide a simple proof that you control a specif
 - [ ] Require users to pay for the gas needed to update their links
 - [ ] Input validation, error handling
 - [ ] Use a less trusted model, e.g. via zk
+
+
+# Lessons Learnt
+
+Building takes longer than expected...
 
 
 # Demo
