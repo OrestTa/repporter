@@ -10,7 +10,7 @@ Repporter lets you verifiably port your web2 social reputation to web3 by provin
 
 Bonus: The attestation can be externally verified by auditing the open source frontend code of the attestation.
 
-The main advantage of Repporter is it's simple and lightweight implementation. All that is needed to verify whether the same entity controls the two identities is a transaction hash. This hash proves that the Repporter smart contract has signed a message that maps the two identities. The mapping mechanism relies on an open-source frontend that can be audited and verified and standard firebase functionalities. Whilst this requires some trust, it is minimised through open-sourcing and a frontend-heavy implementation. The trust that is needed is that the Repporter backend correctly verifies the OAuth token. 
+The main advantage of Repporter is it's simple and lightweight implementation. All that is needed to verify whether the same entity controls the two identities is a transaction hash. This hash proves that the Repporter smart contract has signed a message that maps the two identities. The mapping mechanism relies on an open-source smart contract, frontend and backend, using standard OAuth functionalities for the centralised web2 service interaction. Whilst this requires some trust, it is reduced through open-sourcing and a frontend-heavy implementation. The trust that is needed is that the Repporter backend correctly verifies the OAuth token.
 
 Why care about UX?
 
