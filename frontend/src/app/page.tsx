@@ -4,7 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { useSignMessage } from "wagmi"
 import Web3 from "web3"
-
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
 
@@ -18,6 +17,10 @@ export default function Home() {
     variables,
   } = useSignMessage();
 
+
+  const [getLinkData, setGetLinkData] = useState<any>(undefined)
+  
+
   async function getLink() {
     // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
     console.log("sending");
@@ -26,7 +29,7 @@ export default function Home() {
       // `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
     );
     const data = await response.json();
-    console.log("Get Link Response:", data);
+    setGetLinkData(data);
   }
 
   useEffect(() => {
@@ -152,6 +155,15 @@ export default function Home() {
     );
   };
 
+
+useEffect(()=>{
+console.log("GET LINK DATA:",getLinkData)
+if(getLinkData!==undefined){
+  console.log(getLinkData.link[44787])
+    console.log(getLinkData.link[5001])
+  }
+},[getLinkData])
+
   return (
     <main className="p-12">
       <div className="flex justify-between items-center w-full p-4">
@@ -244,6 +256,29 @@ export default function Home() {
           </button>
         </label>
       </form>
+      <div className="flex justify-center mx-auto bg-white p-20 divide-x-8">
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between gap-32">
+            <div className="text-3xl">
+              Mantle
+            </div>
+            <div className="text-3xl">
+              Celo
+            </div>
+          </div>
+          <div className="flex flex-row justify-between gap-16 pt-2 ">
+            <div>
+            
+            {getLinkData && getLinkData.link[44787]}
+            </div>
+            <div>
+            
+            {getLinkData && getLinkData.link[5001]}
+            </div>
+          </div>
+
+        </div>
+      </div>
     </main>
   );
 }
