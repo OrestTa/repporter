@@ -165,9 +165,6 @@ export default function Home() {
       <div >
         {signMessageData && <label className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6">{signMessageData}</label>}
       </div>
-
-      
-
       {signMessageData && (
           <div className="bg-white text-black text-xl">
             <label>{signMessageData}</label>
