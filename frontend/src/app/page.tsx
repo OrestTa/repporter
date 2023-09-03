@@ -165,8 +165,10 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
   useEffect(() => {
     console.log("GET LINK DATA:", getLinkData);
     if (getLinkData !== undefined) {
+      if(getLinkData.link !== undefined){
       console.log(getLinkData.link[44787]);
       console.log(getLinkData.link[5001]);
+      }
     }
   }, [getLinkData]);
 
@@ -286,13 +288,13 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
             <div className="text-lg bg-[#151515] p-10 text-clip	">
               Mantle
               <p className="text-xl text-clip	 break-all">
-                {getLinkData && getLinkData.link[5001]}{" "}
+                {getLinkData!==undefined  && getLinkData.link && getLinkData.link[5001]}
               </p>
             </div>
             <div className="text-lg bg-[#151515] p-10 text-clip	 break-all">
               Celo
               <p className="text-3xl text-clip	">
-                {getLinkData && getLinkData.link[44787]}{" "}
+                {getLinkData!==undefined && getLinkData.link && getLinkData.link[44787]}
               </p>
             </div>
           </div>
