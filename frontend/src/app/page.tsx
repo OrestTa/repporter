@@ -146,7 +146,7 @@ export default function Home() {
 
     return (
       <button
-        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl  flex items-center justify-center hover:invert"
+        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl  flex items-center justify-center hover:invert"
         onClick={handleButtonClick}
       >
         3. Sign
@@ -156,7 +156,6 @@ export default function Home() {
 
   return (
     <main className="p-12">
-
       {/* blobs */}
       <div className="blob-cont">
         <div className="yellow blob"></div>
@@ -180,18 +179,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        <div className="flex w-full h-1/2 flex-wrap gap-2 p-4 md:p-8 text-black items-center justify-center py-6 my-12">
-          <p className="text-7xl md:text-3xl text-center">
-            Prove and verify onchain that you control a Github{" "}
-          </p>
-        </div>
+      <div className="flex w-full h-1/2 flex-wrap gap-2 p-4 md:p-8 text-black items-center justify-center py-6 my-12 text-3xl md:text-7xl text-center">
+        Prove and verify onchain that you control a Github handle.
       </div>
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
         {status !== "authenticated" && (
           <div
-            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl flex items-center justify-center hover:invert"
             onClick={() => signIn("github")}
           >
             1. Github
@@ -200,7 +195,7 @@ export default function Home() {
 
         {status === "authenticated" && (
           <button
-            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-lg md:text-2xl flex items-center justify-center hover:invert"
             onClick={() => signOut()}
           >
             Sign out
@@ -209,15 +204,13 @@ export default function Home() {
 
         <button
           onClick={() => open()}
-          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
+          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl flex items-center justify-center hover:invert"
         >
           2. Connect Wallet
         </button>
 
         <APICallerButton />
       </div>
-
-
 
       <div>
         {signMessageData && (
@@ -240,7 +233,7 @@ export default function Home() {
           <input
             id="inputField"
             type="text"
-            className="flex-grow bg-[#151515] p-4 md:p-8 text-white text-xl items-center justify-center py-2 md:text-2xl lg:text-5xl"
+            className="flex-grow bg-[#151515] p-4 md:p-8 text-white text-xl items-center justify-center py-2 md:text-2xl"
             placeholder="Enter a wallet to check"
             value={addressInput}
             onChange={(e) => setAddressInput(e.target.value)}
@@ -249,15 +242,12 @@ export default function Home() {
           <button
             type="submit"
             onClick={getLink}
-            className="bg-[#151515] p-4 md:p-8  text-xl items-center justify-center py-2 md:text-2xl lg:text-5xl hover:invert"
+            className="bg-[#151515] p-4 md:p-8  text-xl items-center justify-center py-2 md:text-2xl hover:invert"
           >
             Look Up
           </button>
         </label>
       </form>
-
-
-
     </main>
   );
 }
