@@ -169,8 +169,8 @@ a {
 }
 
 .typing-demo {
-  width: 10ch;
-  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+  width: 7ch;
+  animation: typing 2s steps(22), blink 0.5s step-end alternate;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
