@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useSignMessage } from "wagmi";
-import Web3 from "web3";
+import { useWeb3Modal } from "@web3modal/react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { useSignMessage } from "wagmi"
+import Web3 from "web3"
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
 
@@ -45,30 +45,34 @@ export default function Home() {
       setAccessToken(session?.accessToken);
       setName(session?.name);
     }, [session]);
+    
+    const [userAddress, setUserAddres] = useState("");
 
-    const [userAddress, setUserAddres] = useState(null);
-    if (
-      typeof window !== "undefined" &&
-      typeof window.ethereum !== "undefined"
-    ) {
-      // Create a Web3 instance using the injected provider
-      const web3 = new Web3(window.ethereum);
-      // Request access to the user's wallet
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((accounts: any[]) => {
-          const userAddress = accounts[0];
-          setUserAddres(userAddress);
-          console.log("User Address:", userAddress);
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
-    } else {
-      console.error(
-        "No web3 provider detected. Please install MetaMask or use a compatible browser."
-      );
-    }
+    useEffect(() => {
+      if (
+        typeof window !== "undefined" &&
+        typeof window.ethereum !== "undefined"
+      ) {
+        // Create a Web3 instance using the injected provider
+        // const web3 = new Web3(window.ethereum);
+        // Request access to the user's wallet
+        window.ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((accounts: any[]) => {
+            const userAddressPreChecksumFormat = accounts[0];
+            const userAddress = Web3.utils.toChecksumAddress(userAddressPreChecksumFormat);
+            setUserAddres(userAddress);
+            console.log("User Address:", userAddress);
+          })
+          .catch((error: any) => {
+            console.error(error);
+          });
+      } else {
+        console.error(
+          "No web3 provider detected. Please install MetaMask or use a compatible browser."
+        );
+      }
+    }, [])
 
     const ADDRESS = userAddress;
     const SIGNATURE = signMessageData;
