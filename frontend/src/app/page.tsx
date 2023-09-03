@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useSignMessage } from "wagmi";
-import Web3 from "web3";
+import { useWeb3Modal } from "@web3modal/react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { useSignMessage } from "wagmi"
+import Web3 from "web3"
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
 
@@ -45,30 +45,34 @@ export default function Home() {
       setAccessToken(session?.accessToken);
       setName(session?.name);
     }, [session]);
+    
+    const [userAddress, setUserAddres] = useState("");
 
-    const [userAddress, setUserAddres] = useState(null);
-    if (
-      typeof window !== "undefined" &&
-      typeof window.ethereum !== "undefined"
-    ) {
-      // Create a Web3 instance using the injected provider
-      const web3 = new Web3(window.ethereum);
-      // Request access to the user's wallet
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((accounts: any[]) => {
-          const userAddress = accounts[0];
-          setUserAddres(userAddress);
-          console.log("User Address:", userAddress);
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
-    } else {
-      console.error(
-        "No web3 provider detected. Please install MetaMask or use a compatible browser."
-      );
-    }
+    useEffect(() => {
+      if (
+        typeof window !== "undefined" &&
+        typeof window.ethereum !== "undefined"
+      ) {
+        // Create a Web3 instance using the injected provider
+        // const web3 = new Web3(window.ethereum);
+        // Request access to the user's wallet
+        window.ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((accounts: any[]) => {
+            const userAddressPreChecksumFormat = accounts[0];
+            const userAddress = Web3.utils.toChecksumAddress(userAddressPreChecksumFormat);
+            setUserAddres(userAddress);
+            console.log("User Address:", userAddress);
+          })
+          .catch((error: any) => {
+            console.error(error);
+          });
+      } else {
+        console.error(
+          "No web3 provider detected. Please install MetaMask or use a compatible browser."
+        );
+      }
+    }, [])
 
     const ADDRESS = userAddress;
     const SIGNATURE = signMessageData;
@@ -76,7 +80,18 @@ export default function Home() {
     const LINK_TYPE = "github";
     const LINK_VALUE = name;
 
-    const addLink = async () => {
+    useEffect(()=>{
+      if(signMessageData!==undefined && userAddress!==undefined) {
+        addLink();
+      }
+    },[signMessageData, userAddress])
+
+       const addLink = async () => {
+        const ADDRESS = userAddress;
+        const SIGNATURE = signMessageData;
+        const OAUTH2_TOKEN = session?.accessToken;
+        const LINK_TYPE = "github";
+        const LINK_VALUE = session?.user.name;
       console.log(
         JSON.stringify({
           address: ADDRESS,
@@ -100,18 +115,35 @@ export default function Home() {
       //   }),
       // });
 
-      // const data = await response.json();
-      // console.log("Add Link Response:", data);
+        const body = JSON.stringify({
+          address: ADDRESS,
+          signature: SIGNATURE,
+          oauth2Token: OAUTH2_TOKEN,
+          linkType: LINK_TYPE,
+          linkValue: LINK_VALUE,
+        })
+
+        console.log("running...")
+        console.warn(body)
+        
+        const response = await fetch(`${API_BASE}/api/addlink`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body
+        });
+  
+        const data = await response.json();
+        console.log("Add Link Response:", data);
     };
 
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ " + session?.name,
+        message: "Sign Github @ " + session?.user.email,
       });
-      setTimeout(async () => {
-        await addLink();
-      }, 5000);
+        
       console.log("End of API Calls");
     };
 

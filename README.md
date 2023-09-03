@@ -8,31 +8,43 @@ The main advantage of repporter is it's simple and lightweight implementation. A
 
 As an end-user, you can provide a simple receipt that proves that you control a specific web2 handle. More importantly, other projects can easily ask users to verify that they control a handle in order to verify their web2 identity. The use cases for businesses are vast: from airdrop management to multi-factor authentication for large payments.
 
+# Future Improvements
+
+[] Verifiable compute of signature
+[] Attesting as Ethereum Attestation Service
+[] Additional web2 identities supported
+[] Additional networks supported
+
 # Demo
 
-- https://repporter.netlify.app/
-
 # Links
-- https://ethwarsaw-2023.devpost.com/
+https://ethwarsaw-2023.devpost.com/
 
 # Submission Details
 
 Team: 
-- [Devpost: konradeurban](https://devpost.com/konradeurban), kkonrad.eth
-- [Devpost: OrestTa](https://devpost.com/OrestTa), orestta.eth
-- [Devpost: igor543](https://devpost.com/igor543), 0xc64E64BFc893d8C5787DDEFD818e2A843690EF3E
+[Devpost: konradeurban](https://devpost.com/konradeurban), kkonrad.eth
+[Devpost: OrestTa](https://devpost.com/OrestTa) orestta.eth
+[Devpost: igor543](https://devpost.com/igor543) 0xc64E64BFc893d8C5787DDEFD818e2A843690EF3E
 
 # License
 
 Unlicense
 
-# More Docs
+# Smart Contracts
 
-- [Frontend](/frontend)
-- [Backend](/backend)
-- [Smart Contract](/contract)
+https://github.com/OrestTa/repporter/tree/main/contract
 
-# Future Work
+## Deployments (v1, single-owner)
 
-- [ ] Require users to pay for the gas needed to update their links
-- [ ] Input validation, error handling
+Owner pubkey: `0x5D369Fc897E83f35fe850c62772BAA0f108e45c4`
+
+### Celo
+- https://alfajores.celoscan.io/tx/0x671def353bc75ce45d30f8c66c541343056118ef0be949eacb7980a801136c27
+  - https://alfajores.celoscan.io/address/0xa7c500c7ca2ce563298b1ef5ea7577434f4fd8dc#readContract
+- https://explorer.celo.org/alfajores/tx/0x671def353bc75ce45d30f8c66c541343056118ef0be949eacb7980a801136c27
+
+### Mantle
+- https://explorer.testnet.mantle.xyz/tx/0x50007e7223816e2f03de18501f8980be2d1f6a81c36fd98e4866a4d974a5e0c5
+  - https://explorer.testnet.mantle.xyz/address/0x37da01940581F68053eA05bb1B61DE2c48d82128/contracts?contract-tab=read-contract#address-tabs
+- https://testnet.mantlescan.org/tx/0x50007e7223816e2f03de18501f8980be2d1f6a81c36fd98e4866a4d974a5e0c5 (no contract verification support)
