@@ -54,7 +54,7 @@ DEPLOYMENTS = {
 
 CHAIN_RPCS = {
     # 5001: "https://rpc.testnet.mantle.xyz", # doesn't seem to work
-    5001: "https://rpc.ankr.com/mantle_testnet", # max 4000 wei gasPrice
+    5001: "https://rpc.ankr.com/mantle_testnet", 
     44787: "https://alfajores-forno.celo-testnet.org",
 }
 
