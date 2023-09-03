@@ -2,7 +2,7 @@
 
 Repporter lets you verifiably port your web2 social reputation to web3 by proving onchain that you control a web2 identity. Repporter creates onchain attestations that map OAuth identities and a wallet address for you or anyone else to view. Here's how it works:
 
-1. A user visits the Repporter dApp, hosted e.g. at https://repporter.netlify.app .
+1. A user visits the Repporter dApp, hosted e.g. at https://repporter.netlify.app
 2. In order to port their reputation, the user is required to login using a web2 platform AND also sign a message using their web3 wallet.
 3. Repporter verifies the web2 login and the web3 identity, and proceeds to store this attested mapping onchain.
 4. The user receives a receipt that shows that Repporter attested the mapping. 
