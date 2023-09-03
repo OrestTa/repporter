@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react"
-import { signIn, signOut, useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
-import { useSignMessage } from "wagmi"
-import Web3 from "web3"
+import { useWeb3Modal } from "@web3modal/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSignMessage } from "wagmi";
+import Web3 from "web3";
 export default function Home() {
   const { data: session, status } = useSession();
   const { open, close } = useWeb3Modal();
@@ -19,44 +19,48 @@ export default function Home() {
     console.log(signMessageData);
   }, [signMessageData]);
 
-
   const API_BASE = "https://repporter-uij0.onrender.com/";
 
   const APICallerButton = () => {
-  const { data: session, status } = useSession();
+    const { data: session, status } = useSession();
 
-  const[jit, setJit] = useState(undefined)
-  const[name, setName] = useState(undefined)
+    const [jit, setJit] = useState(undefined);
+    const [name, setName] = useState(undefined);
 
-  useEffect(()=>{
-    setJit(session?.accessToken)
-    setName(session?.name)
-  },[session])
+    useEffect(() => {
+      setJit(session?.accessToken);
+      setName(session?.name);
+    }, [session]);
 
-  const [userAddress, setUserAddres] = useState(null)
-  if(typeof window !== "undefined" && typeof window.ethereum !== 'undefined') {
-    // Create a Web3 instance using the injected provider
-    const web3 = new Web3(window.ethereum);
-    // Request access to the user's wallet
-    window.ethereum
-      .request({ method: 'eth_requestAccounts' })
-      .then((accounts: any[]) => {
-        const userAddress = accounts[0];
-        setUserAddres(userAddress)
-        console.log('User Address:', userAddress);
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
-  } else {
-    console.error('No web3 provider detected. Please install MetaMask or use a compatible browser.');
-  }
-  
-  const ADDRESS = userAddress;
-  const SIGNATURE = signMessageData;
-  const OAUTH2_TOKEN = jit;
-  const LINK_TYPE = "github";
-  const LINK_VALUE = name;
+    const [userAddress, setUserAddres] = useState(null);
+    if (
+      typeof window !== "undefined" &&
+      typeof window.ethereum !== "undefined"
+    ) {
+      // Create a Web3 instance using the injected provider
+      const web3 = new Web3(window.ethereum);
+      // Request access to the user's wallet
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((accounts: any[]) => {
+          const userAddress = accounts[0];
+          setUserAddres(userAddress);
+          console.log("User Address:", userAddress);
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
+    } else {
+      console.error(
+        "No web3 provider detected. Please install MetaMask or use a compatible browser."
+      );
+    }
+
+    const ADDRESS = userAddress;
+    const SIGNATURE = signMessageData;
+    const OAUTH2_TOKEN = jit;
+    const LINK_TYPE = "github";
+    const LINK_VALUE = name;
 
     const addLink = async () => {
       const response = await fetch(`${API_BASE}/api/addlink`, {
@@ -88,16 +92,23 @@ export default function Home() {
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ "+session?.name
-      })
+        message: "Sign Github @ " + session?.name,
+      });
       setTimeout(async () => {
         await addLink();
-        await getLink();  
+        await getLink();
       }, 5000);
       console.log("End of API Calls");
     };
 
-    return <button className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={handleButtonClick}>Sign</button>;
+    return (
+      <button
+        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+        onClick={handleButtonClick}
+      >
+        Sign
+      </button>
+    );
   };
 
   return (
@@ -113,7 +124,7 @@ export default function Home() {
             target="blank"
             className="text-current"
           >
-            <p>Repo</p>
+            <p>Repo v.0.1</p>
           </a>
         </div>
       </div>
@@ -138,8 +149,6 @@ export default function Home() {
           =
         </button>
         <APICallerButton />
-
-
       </div>
 
       {/* blobs */}
@@ -148,17 +157,20 @@ export default function Home() {
         <div className="red blob"></div>
         <div className="green blob"></div>
       </div>
-      {status === "authenticated" && (
-        <button  onClick={() => signOut()}>Sign out</button>
-      )}
-      {status === "authenticated"}
-      {/* && <div>{session.email as string}</div>} */}
-      {signMessageData && (
-        <div className="bg-white text-black text-xl">
-          <label>{signMessageData}</label>
-        </div>
-      )}
-      
+
+      <div className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-7xl items-center justify-center hover:invert py-6 my-6">
+        {status === "authenticated" && (
+          <button onClick={() => signOut()}>Sign out</button>
+        )}
+        {status === "authenticated"}
+        {/* && <div>{session.email as string}</div>} */}
+
+        {signMessageData && (
+          <div className="bg-white text-black text-xl">
+            <label>{signMessageData}</label>
+          </div>
+        )}
+      </div>
     </main>
   );
 }
