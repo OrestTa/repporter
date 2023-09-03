@@ -20,7 +20,7 @@ from crypto import (
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://repporter.onrender.com", "https://repporter-uij0.onrender.com/"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://repporter.onrender.com", "https://repporter-uij0.onrender.com/", "https://repporter.netlify.app"]}})
 
 
 @app.route("/api/addlink", methods=["POST"])
