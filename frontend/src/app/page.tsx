@@ -189,7 +189,7 @@ export default function Home() {
           </button>
         )}
 
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center cursor-default invert">
+        <button className="w-1/10 md:w-1/12 flex-grow p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center cursor-default invert">
           +
         </button>
         <button
@@ -198,7 +198,7 @@ export default function Home() {
         >
           Connect Wallet
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center  cursor-default invert">
+        <button className="w-1/10 md:w-1/12 flex-grow p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center  cursor-default invert">
           =
         </button>
         <APICallerButton />
@@ -240,7 +240,7 @@ export default function Home() {
             onClick={getLink}
             className="bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center py-2 hover:invert"
           >
-            Check
+            Look Up
           </button>
         </label>
       </form>
