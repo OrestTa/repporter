@@ -144,10 +144,10 @@ export default function Home() {
 
     return (
       <button
-        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl  flex items-center justify-center hover:invert"
+        className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl  flex items-center justify-center hover:invert"
         onClick={handleButtonClick}
       >
-        Sign
+        3. Sign
       </button>
     );
   };
@@ -173,34 +173,30 @@ export default function Home() {
       <div className="flex w-full h-1/2 flex-wrap gap-2">
         {status !== "authenticated" && (
           <div
-            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
             onClick={() => signIn("github")}
           >
-            Github
+            1. Github
           </div>
         )}
 
         {status === "authenticated" && (
           <button
-            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
             onClick={() => signOut()}
           >
             Sign out
           </button>
         )}
 
-        <button className="w-1/10 md:w-1/12 flex-grow p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center cursor-default invert">
-          +
-        </button>
+
         <button
           onClick={() => open()}
-          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center hover:invert"
+          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl lg:text-5xl flex items-center justify-center hover:invert"
         >
-          Connect Wallet
+          2. Connect Wallet
         </button>
-        <button className="w-1/10 md:w-1/12 flex-grow p-4 md:p-8 text-white text-lg md:text-2xl lg:text-6xl flex items-center justify-center  cursor-default invert">
-          =
-        </button>
+
         <APICallerButton />
       </div>
 
@@ -245,5 +241,9 @@ export default function Home() {
         </label>
       </form>
     </main>
+
+
+
+
   );
 }
