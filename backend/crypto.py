@@ -73,7 +73,7 @@ def addLinkForUser(address: str, link_type: str, link_value: str) -> dict:
             tx_params = {
                 "from": sender_address,
                 "gas": 2000000,  # Adjust gas as needed
-                "gasPrice": current_w3.to_wei("20", "gwei"),
+                "gasPrice": current_w3.to_wei("4000", "wei"),
                 "nonce": current_w3.eth.get_transaction_count(sender_address),
                 "data": tx_data,
                 "to": contract_addr,
