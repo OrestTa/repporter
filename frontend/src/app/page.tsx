@@ -80,7 +80,18 @@ export default function Home() {
     const LINK_TYPE = "github";
     const LINK_VALUE = name;
 
-    const addLink = async () => {
+    useEffect(()=>{
+      if(signMessageData!==undefined && userAddress!==undefined) {
+        addLink();
+      }
+    },[signMessageData, userAddress])
+
+       const addLink = async () => {
+        const ADDRESS = userAddress;
+        const SIGNATURE = signMessageData;
+        const OAUTH2_TOKEN = session?.accessToken;
+        const LINK_TYPE = "github";
+        const LINK_VALUE = session?.user.name;
       console.log(
         JSON.stringify({
           address: ADDRESS,
@@ -104,18 +115,35 @@ export default function Home() {
       //   }),
       // });
 
-      // const data = await response.json();
-      // console.log("Add Link Response:", data);
+        const body = JSON.stringify({
+          address: ADDRESS,
+          signature: SIGNATURE,
+          oauth2Token: OAUTH2_TOKEN,
+          linkType: LINK_TYPE,
+          linkValue: LINK_VALUE,
+        })
+
+        console.log("running...")
+        console.warn(body)
+        
+        const response = await fetch(`${API_BASE}/api/addlink`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: body
+        });
+  
+        const data = await response.json();
+        console.log("Add Link Response:", data);
     };
 
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ " + session?.name,
+        message: "Sign Github @ " + session?.user.email,
       });
-      setTimeout(async () => {
-        await addLink();
-      }, 5000);
+        
       console.log("End of API Calls");
     };
 
