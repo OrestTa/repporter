@@ -204,7 +204,7 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
       <div className="flex w-full h-1/2 flex-wrap gap-2">
         {status !== "authenticated" && (
           <div
-            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl flex items-center justify-center hover:invert"
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-lg md:text-2xl flex items-center justify-center hover:invert cursor-pointer"
             onClick={() => signIn("github")}
           >
             1. Github
