@@ -19,6 +19,7 @@ Why care about UX?
 
 As an end-user, you can provide a simple receipt that proves that you control a specific web2 handle. More importantly, other projects can easily ask users to verify that they control a handle in order to verify their web2 identity. The use cases for businesses are vast: from airdrop management to multi-factor authentication for large payments.
 
+
 # Future Improvements
 
 - [ ] Onchain storage and verifiable compute of user signature
@@ -29,13 +30,16 @@ As an end-user, you can provide a simple receipt that proves that you control a 
 - [ ] Input validation, error handling
 - [ ] Use a less trusted model, e.g. via zk
 
+
 # Demo
 
 - https://repporter.netlify.app
 
 
 # Links
-https://ethwarsaw-2023.devpost.com/
+
+- https://ethwarsaw-2023.devpost.com/
+
 
 # Submission Details
 
@@ -49,9 +53,11 @@ Tweets:
 
 - https://twitter.com/0xkkonrad/status/1698170902125363649
 
+
 # License
 
 GPLv3
+
 
 # Module Documentation
 
