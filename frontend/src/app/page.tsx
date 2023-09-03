@@ -14,7 +14,17 @@ export default function Home() {
     signMessage,
     variables,
   } = useSignMessage();
+  async function getLink(){
+   // 0x71C9E62FA7293D43765692A408483B2fC7c7f0C6
+   console.log("sending")
+   const response = await fetch(
+     // `https://repporter-uij0.onrender.com/api/getlink?address=${addr}&linkType=github`
+     `https://repporter-uij0.onrender.com/api/getlink?address=0x71C9E62FA7293D43765692A408483B2fC7c7f0C6&linkType=github`
 
+   );
+   const data = await response.json();
+   console.log("Get Link Response:", data);
+  }  
   useEffect(() => {
     console.log(signMessageData);
   }, [signMessageData]);
@@ -81,14 +91,6 @@ export default function Home() {
       console.log("Add Link Response:", data);
     };
 
-    const getLink = async () => {
-      const response = await fetch(
-        `${API_BASE}/api/getlink?address=${ADDRESS}&linkType=${LINK_TYPE}`
-      );
-      const data = await response.json();
-      console.log("Get Link Response:", data);
-    };
-
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
@@ -96,7 +98,6 @@ export default function Home() {
       });
       setTimeout(async () => {
         await addLink();
-        await getLink();
       }, 5000);
       console.log("End of API Calls");
     };
@@ -130,15 +131,19 @@ export default function Home() {
       </div>
 
       <div className="flex w-full h-1/2 flex-wrap gap-2">
-        <div
-          className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
-          onClick={() => signIn("github")}
-        >
-          Github
-          {status === "authenticated" && (
-            <button onClick={() => signOut()}>Sign out</button>
-          )}
-        </div>
+        {status !== "authenticated" && (
+          <div
+            className="w-1/3 md:w-1/4 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert"
+            onClick={() => signIn("github")}
+          >
+            Github
+          </div>
+        )}
+
+        {status === "authenticated" && (
+          <button className="w-1/3 md:w-1/4 flex-grow bg-[#1e6536] p-4 md:p-8 text-white text-7xl flex items-center justify-center hover:invert" onClick={() => signOut()}>Sign out</button>
+        )}
+
         <button className="w-1/10 md:w-1/12 flex-grow bg-[#151515] p-4 md:p-8 text-white text-7xl flex items-center justify-center">
           +
         </button>
@@ -161,9 +166,19 @@ export default function Home() {
         <div className="green blob"></div>
       </div>
 
-      <div >
-        {signMessageData && <label className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6">{signMessageData}</label>}
+      <div>
+        {signMessageData && (
+          <label className="flex w-full h-1/2 flex-wrap gap-2 bg-[#151515] p-4 md:p-8 text-white text-lg items-center justify-center hover:invert py-6 my-6">
+            {signMessageData}
+          </label>
+        )}
       </div>
+      {signMessageData && (
+          <div className="bg-white text-black text-xl">
+            <label>{signMessageData}</label>
+          </div>
+        )}
+        <button onClick={getLink}>CHECK</button>
     </main>
   );
 }
