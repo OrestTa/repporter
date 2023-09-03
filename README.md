@@ -47,7 +47,7 @@ Team:
 
 Tweets:
 
-- TBA (at https://twitter.com/0xkkonrad )
+- https://twitter.com/0xkkonrad/status/1698170902125363649
 
 # License
 
