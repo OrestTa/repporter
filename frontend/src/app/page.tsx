@@ -1,9 +1,9 @@
 "use client";
-import { useWeb3Modal } from "@web3modal/react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useSignMessage } from "wagmi";
-import Web3 from "web3";
+import { useWeb3Modal } from "@web3modal/react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import { useEffect, useState } from "react"
+import { useSignMessage } from "wagmi"
+import Web3 from "web3"
 
 export default function Home() {
   const [addressInput, setAddressInput] = useState("");
@@ -287,14 +287,14 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
           <div className="flex flex-row justify-between text-white gap-32">
             <div className="text-lg bg-[#151515] p-10 text-clip	">
               Mantle
-              <p className="text-xl text-clip	 break-all">
-                {getLinkData!==undefined  && getLinkData.link && getLinkData.link[5001]}
+              <p className="text-3xl text-clip	 break-all">
+                {getLinkData!==undefined  && getLinkData.link && "Github: " + getLinkData.link[5001]}
               </p>
             </div>
             <div className="text-lg bg-[#151515] p-10 text-clip	 break-all">
               Celo
               <p className="text-3xl text-clip	">
-                {getLinkData!==undefined && getLinkData.link && getLinkData.link[44787]}
+                {getLinkData!==undefined && getLinkData.link && "Github: " + getLinkData.link[44787]}
               </p>
             </div>
           </div>
