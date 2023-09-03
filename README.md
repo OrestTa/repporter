@@ -12,22 +12,26 @@ Bonus: The attestation can be externally verified by auditing the open source fr
 
 The main advantage of Repporter is it's simple and lightweight implementation. All that is needed to verify whether the same entity controls the two identities is a transaction hash. This hash proves that the Repporter smart contract has signed a message that maps the two identities. The mapping mechanism relies on an open-source smart contract, frontend and backend, using standard OAuth functionalities for the centralised web2 service interaction. Whilst this requires some trust, it is reduced through open-sourcing and a frontend-heavy implementation. The trust that is needed is that the Repporter backend correctly verifies the OAuth token.
 
-Why care about UX?
+# Why care about UX?
+
+Users should have a smooth onboarding experience where they do not need to leave behind their hard-gained reputation. By creating a simple application with a very simple UX, Repporter allows users to bring their Gitcoin street cred directly onchain.  
 
 
 # Use Cases
 
 As an end-user, you can provide a simple receipt that proves that you control a specific web2 handle. More importantly, other projects can easily ask users to verify that they control a handle in order to verify their web2 identity. The use cases for businesses are vast: from airdrop management to multi-factor authentication for large payments.
 
+
 # Future Improvements
 
-[ ] Onchain storage and verifiable compute of user signature
-[ ] Attesting as Ethereum Attestation Service
-[ ] Additional web2 identities' support
-[ ] Additional networks' support
-[ ] Require users to pay for the gas needed to update their links
-[ ] Input validation, error handling
-[ ] Use a less trusted model, e.g. via zk
+- [ ] Onchain storage and verifiable compute of user signature
+- [ ] Attesting as Ethereum Attestation Service
+- [ ] Additional web2 identities' support
+- [ ] Additional networks' support
+- [ ] Require users to pay for the gas needed to update their links
+- [ ] Input validation, error handling
+- [ ] Use a less trusted model, e.g. via zk
+
 
 # Demo
 
@@ -35,7 +39,9 @@ As an end-user, you can provide a simple receipt that proves that you control a 
 
 
 # Links
-https://ethwarsaw-2023.devpost.com/
+
+- https://ethwarsaw-2023.devpost.com/
+
 
 # Submission Details
 
@@ -49,9 +55,11 @@ Tweets:
 
 - https://twitter.com/0xkkonrad/status/1698170902125363649
 
+
 # License
 
 GPLv3
+
 
 # Module Documentation
 

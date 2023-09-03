@@ -145,7 +145,8 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
     const handleButtonClick = async () => {
       console.log("API CALLS EXAMPLE");
       signMessage({
-        message: "Sign Github @ " + session?.user.email,
+        message:
+          "Sign mapping your wallet address to Github, " + session?.user.name,
       });
 
       console.log("End of API Calls");
@@ -161,14 +162,13 @@ const [loadingLookUp, setLoadingLookUp] = useState(false)
     );
   };
 
-
-useEffect(()=>{
-console.log("GET LINK DATA:",getLinkData)
-if(getLinkData!==undefined){
-  console.log(getLinkData.link[44787])
-    console.log(getLinkData.link[5001])
-  }
-},[getLinkData])
+  useEffect(() => {
+    console.log("GET LINK DATA:", getLinkData);
+    if (getLinkData !== undefined) {
+      console.log(getLinkData.link[44787]);
+      console.log(getLinkData.link[5001]);
+    }
+  }, [getLinkData]);
 
   return (
     <main className="p-12">
@@ -279,27 +279,23 @@ if(getLinkData!==undefined){
      
         </label>
       </form>
-      <div className="flex justify-center mx-auto bg-white p-20 divide-x-8">
-        <div className="flex flex-col">
-          <div className="flex flex-row justify-between gap-32">
-            <div className="text-3xl">
-              Mantle
-            </div>
-            <div className="text-3xl">
-              Celo
-            </div>
-          </div>
-          <div className="flex flex-row justify-between gap-16 pt-2 ">
-            <div>
-            
-            {getLinkData && getLinkData.link[44787]}
-            </div>
-            <div>
-            
-            {getLinkData && getLinkData.link[5001]}
-            </div>
-          </div>
 
+      <div className="flex justify-center mx-auto p-5 divide-x-8">
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between text-white gap-32">
+            <div className="text-lg bg-[#151515] p-10 text-clip	">
+              Mantle
+              <p className="text-xl text-clip	 break-all">
+                {getLinkData && getLinkData.link[5001]}{" "}
+              </p>
+            </div>
+            <div className="text-lg bg-[#151515] p-10 text-clip	 break-all">
+              Celo
+              <p className="text-3xl text-clip	">
+                {getLinkData && getLinkData.link[44787]}{" "}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </main>
