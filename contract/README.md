@@ -13,4 +13,5 @@ Owner pubkey: `0x5D369Fc897E83f35fe850c62772BAA0f108e45c4`
 ### Mantle
 
 - https://explorer.testnet.mantle.xyz/tx/0x50007e7223816e2f03de18501f8980be2d1f6a81c36fd98e4866a4d974a5e0c5
+  - https://explorer.testnet.mantle.xyz/address/0x37da01940581F68053eA05bb1B61DE2c48d82128/contracts?contract-tab=read-contract#address-tabs
 - https://testnet.mantlescan.org/tx/0x50007e7223816e2f03de18501f8980be2d1f6a81c36fd98e4866a4d974a5e0c5 (no contract verification support)
